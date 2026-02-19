@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Brand Worlds Studio — הצעות שדרוג</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --panel: #141414;
+      --panel-hover: #1a1a1a;
+      --gold: #d4af37;
+      --gold-dim: #d4af3740;
+      --gold-glow: #d4af3718;
+      --white: #ffffff;
+      --silver: #a3a3a3;
+      --border: #262626;
+      --green: #22c55e;
+      --green-dim: #22c55e30;
+      --amber: #f59e0b;
+      --amber-dim: #f59e0b30;
+      --red: #ef4444;
+      --red-dim: #ef444430;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Heebo', sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ═══ HEADER ═══ */
+    .header {
+      padding: 40px 32px 32px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      right: 0;
+      width: 120px;
+      height: 1px;
+      background: var(--gold);
+    }
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .header-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    .header h1 {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .header p {
+      font-size: 14px;
+      color: var(--silver);
+      font-weight: 300;
+    }
+    .stats-row {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat-num {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 11px;
+      color: var(--silver);
+      margin-top: 4px;
+    }
+
+    /* ═══ CONTENT ═══ */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px;
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--silver);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    /* ═══ PITCH CARDS ═══ */
+    .pitches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .pitch-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      position: relative;
+      overflow: hidden;
+    }
+    .pitch-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 4px;
+      height: 100%;
+      transition: background 0.3s;
+    }
+    .pitch-card:hover {
+      background: var(--panel-hover);
+      border-color: var(--gold-dim);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+    .pitch-card:hover::before {
+      background: var(--gold);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+    .card-colors {
+      display: flex;
+      gap: 4px;
+    }
+    .color-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+    .card-status {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+    .status-active {
+      background: var(--green-dim);
+      color: var(--green);
+    }
+    .status-pending {
+      background: var(--amber-dim);
+      color: var(--amber);
+    }
+    .status-draft {
+      background: var(--gold-glow);
+      color: var(--gold);
+    }
+
+    .card-name {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .card-type {
+      font-size: 13px;
+      color: var(--silver);
+      margin-bottom: 16px;
+    }
+
+    .card-meta {
+      display: flex;
+      gap: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .meta-item {
+      font-size: 11px;
+      color: var(--silver);
+    }
+    .meta-item strong {
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    /* ═══ ADD CARD ═══ */
+    .add-card {
+      background: transparent;
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 180px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .add-card:hover {
+      border-color: var(--gold-dim);
+      background: var(--gold-glow);
+    }
+    .add-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--gold-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .add-card span {
+      font-size: 14px;
+      color: var(--silver);
+    }
+
+    /* ═══ HOW-TO SECTION ═══ */
+    .howto {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+    }
+    .howto h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .howto-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .howto-step {
+      padding: 16px;
+      background: var(--bg);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .step-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--gold);
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+    .step-text {
+      font-size: 13px;
+      color: var(--silver);
+      line-height: 1.6;
+    }
+    .step-text code {
+      font-family: 'DM Mono', monospace;
+      background: var(--gold-glow);
+      color: var(--gold);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+    }
+
+    /* ═══ FOOTER ═══ */
+    .footer {
+      margin-top: 48px;
+      padding: 20px 32px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .footer span {
+      font-size: 11px;
+      color: var(--silver);
+    }
+
+    @media (max-width: 640px) {
+      .header-row { flex-direction: column; gap: 20px; }
+      .container { padding: 20px 16px; }
+      .pitches-grid { grid-template-columns: 1fr; }
+      .howto-steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-row">
+    <div>
+      <div class="header-badge">Brand Worlds Studio</div>
+      <h1>הצעות שדרוג — Pitches</h1>
+      <p>כל הצעות הלקוחות במקום אחד. כל דף = לינק ייעודי לשליחה.</p>
+    </div>
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-num" id="total-count">1</div>
+        <div class="stat-label">הצעות</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" id="active-count">0</div>
+        <div class="stat-label">פעילים</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+  <div class="section-label">הצעות לקוחות</div>
+
+  <div class="pitches-grid">
+
+    <!-- PISGA -->
+    <a class="pitch-card" href="pisga.html" target="_blank">
+      <div class="card-top">
+        <div class="card-colors">
+          <div class="color-dot" style="background: #C89E4A;"></div>
+          <div class="color-dot" style="background: #161517;"></div>
+          <div class="color-dot" style="background: #A07830;"></div>
+          <div class="color-dot" style="background: #E8C872;"></div>
+          <div class="color-dot" style="background: #F9F6F0; border-color: #333;"></div>
+        </div>
+        <span class="card-status status-pending">ממתין</span>
+      </div>
+      <div class="card-name">פסגה ביטוח</div>
+      <div class="card-type">סוכנות ביטוח פנסיוני · איתן ורועי</div>
+      <div class="card-meta">
+        <div class="meta-item">DNA: <strong>Professional Warmth</strong></div>
+        <div class="meta-item">תאריך: <strong>19.02.2026</strong></div>
+      </div>
+    </a>
+
+    <!-- ═══ TEMPLATE: copy this block for each new client ═══ -->
+    <!--
+    <a class="pitch-card" href="CLIENT-NAME.html" target="_blank">
+      <div class="card-top">
+        <div class="card-colors">
+          <div class="color-dot" style="background: #COLOR1;"></div>
+          <div class="color-dot" style="background: #COLOR2;"></div>
+          <div class="color-dot" style="background: #COLOR3;"></div>
+        </div>
+        <span class="card-status status-draft">טיוטה</span>
+      </div>
+      <div class="card-name">שם הלקוח</div>
+      <div class="card-type">תחום · שם איש קשר</div>
+      <div class="card-meta">
+        <div class="meta-item">DNA: <strong>סגנון</strong></div>
+        <div class="meta-item">תאריך: <strong>DD.MM.YYYY</strong></div>
+      </div>
+    </a>
+    -->
+
+    <!-- ADD NEW -->
+    <div class="add-card" onclick="alert('ליצור הצעה חדשה — שלחי את פרטי הלקוח לקלוד ותקבלי דף מוכן')">
+      <div class="add-icon">+</div>
+      <span>הצעה חדשה</span>
+    </div>
+
+  </div>
+
+  <!-- HOW-TO -->
+  <div class="section-label">איך להוסיף הצעה</div>
+  <div class="howto">
+    <h3>תהליך עבודה</h3>
+    <div class="howto-steps">
+      <div class="howto-step">
+        <div class="step-num">01</div>
+        <div class="step-text">שלחי לקלוד את פרטי הלקוח — לוגו, דף נחיתה, דוגמאות תוכן קיים</div>
+      </div>
+      <div class="howto-step">
+        <div class="step-num">02</div>
+        <div class="step-text">קלוד בונה דף פיץ' עם DNA, לפני/אחרי, והצעת שדרוג → קובץ <code>client.html</code></div>
+      </div>
+      <div class="howto-step">
+        <div class="step-num">03</div>
+        <div class="step-text">העלי לתיקיית <code>pitches/</code> ב-GitHub ועדכני את <code>index.html</code> עם כרטיס חדש</div>
+      </div>
+      <div class="howto-step">
+        <div class="step-num">04</div>
+        <div class="step-text">שלחי ללקוח: <code>hagitadigital.github.io/hagitweb/pitches/client.html</code></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <span>Brand Worlds Studio — מסמך פנימי | brandos.hagitantebi.co.il</span>
+</div>
+
+</body>
+</html>
