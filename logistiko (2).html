@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>לוגיסטיקו — הצעת שדרוג אתר | Brand Worlds Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bws-charcoal: #1a1a1a;
+  --bws-warm: #2a2420;
+  --bws-cream: #FAF7F2;
+  --bws-gold: #C8A96E;
+  --bws-gold-light: #D4B97A;
+  --bws-navy: #1B3A5C;
+  --bws-sky: #4A90D9;
+  --bws-red: #C0392B;
+  --bws-green: #27AE60;
+  --bws-text: #2D2D2D;
+  --bws-muted: #7A7A7A;
+  --bws-border: #E8E2DA;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Heebo', sans-serif;
+  background: var(--bws-cream);
+  color: var(--bws-text);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ─── HEADER ─── */
+.header {
+  position: fixed; top: 0; right: 0; left: 0; z-index: 100;
+  background: rgba(26,26,26,0.97);
+  backdrop-filter: blur(20px);
+  padding: 16px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid rgba(200,169,110,0.15);
+}
+.header-logo {
+  display: flex; align-items: center; gap: 12px; text-decoration: none;
+}
+.header-logo-mark {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, var(--bws-gold), var(--bws-gold-light));
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 900; color: var(--bws-charcoal);
+}
+.header-logo-text { color: #fff; font-size: 15px; font-weight: 600; letter-spacing: 0.5px; }
+.header-badge {
+  background: rgba(200,169,110,0.1);
+  border: 1px solid rgba(200,169,110,0.2);
+  border-radius: 100px; padding: 6px 18px;
+  color: var(--bws-gold-light); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* ─── HERO ─── */
+.hero {
+  padding: 160px 48px 80px;
+  background: var(--bws-charcoal);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 30%, rgba(200,169,110,0.08), transparent),
+    radial-gradient(ellipse 40% 60% at 20% 70%, rgba(74,144,217,0.06), transparent);
+}
+.hero-inner {
+  max-width: 900px; margin: 0 auto; position: relative; z-index: 1;
+}
+.hero-client-tag {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-bottom: 32px;
+}
+.hero-client-tag .tag {
+  background: rgba(200,169,110,0.12);
+  border: 1px solid rgba(200,169,110,0.25);
+  border-radius: 6px; padding: 6px 14px;
+  color: var(--bws-gold-light); font-size: 12px; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.hero h1 {
+  font-size: clamp(36px, 5vw, 58px);
+  font-weight: 900; color: #fff;
+  line-height: 1.15; margin-bottom: 20px;
+}
+.hero h1 .hl {
+  background: linear-gradient(135deg, var(--bws-gold), var(--bws-gold-light));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-sub {
+  font-size: 19px; color: #b0a99e; line-height: 1.75;
+  max-width: 640px; font-weight: 300;
+}
+.hero-meta {
+  display: flex; gap: 32px; margin-top: 48px; padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.hero-meta-item { color: #888; font-size: 13px; }
+.hero-meta-item strong { color: #ccc; font-weight: 600; display: block; margin-bottom: 2px; }
+
+/* ─── SECTION SHARED ─── */
+.section { padding: 80px 48px; max-width: 960px; margin: 0 auto; }
+.section-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--bws-gold); font-size: 12px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.section-label::before { content: ''; width: 20px; height: 2px; background: var(--bws-gold); }
+.section-title {
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 800; color: var(--bws-charcoal);
+  line-height: 1.25; margin-bottom: 16px;
+}
+.section-desc {
+  font-size: 17px; color: var(--bws-muted);
+  line-height: 1.75; max-width: 640px; margin-bottom: 48px;
+}
+
+/* ─── PROBLEM SECTION ─── */
+.problem { background: #fff; padding: 80px 48px; }
+.problem-inner { max-width: 960px; margin: 0 auto; }
+.problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 40px; }
+.problem-card {
+  background: #FEF5F5;
+  border: 1px solid #F5D5D5;
+  border-radius: 16px; padding: 28px;
+  position: relative;
+}
+.problem-card .icon {
+  width: 40px; height: 40px;
+  background: rgba(192,57,43,0.08);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; margin-bottom: 16px;
+}
+.problem-card h3 {
+  font-size: 17px; font-weight: 700;
+  color: var(--bws-text); margin-bottom: 8px;
+}
+.problem-card p {
+  font-size: 14px; color: var(--bws-muted); line-height: 1.65;
+}
+
+/* ─── CURRENT SITE SCREENSHOT ─── */
+.current-site {
+  background: var(--bws-charcoal);
+  padding: 80px 48px;
+}
+.current-site-inner { max-width: 960px; margin: 0 auto; }
+.site-frame {
+  position: relative;
+  border-radius: 16px; overflow: hidden;
+  background: #fff;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.3);
+  margin-top: 40px;
+}
+.site-frame-bar {
+  background: #f0f0f0;
+  padding: 12px 20px;
+  display: flex; align-items: center; gap: 8px;
+  border-bottom: 1px solid #ddd;
+}
+.site-frame-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+}
+.site-frame-dot.r { background: #FF5F57; }
+.site-frame-dot.y { background: #FFBD2E; }
+.site-frame-dot.g { background: #28CA41; }
+.site-frame-url {
+  background: #fff; border-radius: 6px; padding: 5px 16px;
+  font-size: 12px; color: #999; margin-right: 12px;
+  flex: 1; font-family: monospace; direction: ltr; text-align: left;
+}
+.site-frame-body {
+  height: 500px; overflow-y: auto; position: relative;
+}
+.site-frame-body iframe {
+  width: 100%; height: 100%; border: none;
+}
+.site-verdict {
+  position: absolute; bottom: 0; right: 0; left: 0;
+  background: linear-gradient(0deg, rgba(26,26,26,0.95) 0%, transparent 100%);
+  padding: 60px 32px 28px;
+  display: flex; align-items: center; gap: 10px;
+}
+.verdict-badge {
+  background: var(--bws-red); color: #fff;
+  padding: 6px 14px; border-radius: 6px;
+  font-size: 13px; font-weight: 700;
+}
+.verdict-text { color: #ccc; font-size: 14px; }
+
+/* ─── COMPARISON BEFORE/AFTER ─── */
+.comparison { padding: 80px 48px; background: #fff; }
+.comparison-inner { max-width: 1100px; margin: 0 auto; }
+.comparison-frames {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+  margin-top: 40px;
+}
+.comp-col { position: relative; }
+.comp-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-bottom: 16px; font-size: 14px; font-weight: 700;
+}
+.comp-label.before { color: var(--bws-red); }
+.comp-label.before::before {
+  content: ''; width: 8px; height: 8px;
+  background: var(--bws-red); border-radius: 50%;
+}
+.comp-label.after { color: var(--bws-green); }
+.comp-label.after::before {
+  content: ''; width: 8px; height: 8px;
+  background: var(--bws-green); border-radius: 50%;
+}
+.comp-frame {
+  border-radius: 12px; overflow: hidden;
+  border: 2px solid var(--bws-border);
+  height: 420px; position: relative;
+  background: #fff;
+}
+.comp-frame.highlight { border-color: var(--bws-green); }
+.comp-frame iframe {
+  width: 100%; height: 100%; border: none;
+  pointer-events: none;
+}
+
+/* ─── SOLUTION POINTS ─── */
+.solution-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  margin-top: 40px;
+}
+.sol-card {
+  background: #F0F7ED;
+  border: 1px solid #D5E8CF;
+  border-radius: 16px; padding: 28px;
+}
+.sol-card .icon {
+  width: 40px; height: 40px;
+  background: rgba(39,174,96,0.1);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; margin-bottom: 16px;
+}
+.sol-card h3 {
+  font-size: 17px; font-weight: 700;
+  color: var(--bws-text); margin-bottom: 8px;
+}
+.sol-card p {
+  font-size: 14px; color: var(--bws-muted); line-height: 1.65;
+}
+
+/* ─── FULL PREVIEW ─── */
+.preview {
+  padding: 80px 48px;
+  background: linear-gradient(180deg, var(--bws-cream) 0%, #fff 100%);
+}
+.preview-inner { max-width: 1100px; margin: 0 auto; }
+.preview-frame {
+  border-radius: 20px; overflow: hidden;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.12);
+  border: 1px solid var(--bws-border);
+  margin-top: 40px;
+  position: relative;
+}
+.preview-frame-bar {
+  background: var(--bws-charcoal);
+  padding: 14px 20px;
+  display: flex; align-items: center; gap: 8px;
+}
+.preview-frame-bar .site-frame-dot { opacity: 0.8; }
+.preview-frame-url {
+  background: rgba(255,255,255,0.08); border-radius: 6px; padding: 6px 16px;
+  font-size: 12px; color: #888; margin-right: 12px;
+  flex: 1; font-family: monospace; direction: ltr; text-align: left;
+}
+.preview-body {
+  height: 700px; overflow-y: auto;
+  background: #fff;
+}
+.preview-body iframe {
+  width: 100%; height: 3000px; border: none;
+}
+.preview-note {
+  text-align: center; margin-top: 20px;
+  color: var(--bws-muted); font-size: 14px;
+}
+
+/* ─── IMPACT SECTION ─── */
+.impact { padding: 80px 48px; background: var(--bws-charcoal); }
+.impact-inner { max-width: 960px; margin: 0 auto; }
+.impact .section-label { color: var(--bws-gold-light); }
+.impact .section-label::before { background: var(--bws-gold); }
+.impact .section-title { color: #fff; }
+.impact .section-desc { color: #999; }
+.impact-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+  margin-top: 40px;
+}
+.impact-stat {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px; padding: 32px; text-align: center;
+}
+.impact-stat .num {
+  font-size: 42px; font-weight: 900;
+  background: linear-gradient(135deg, var(--bws-gold), var(--bws-gold-light));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; margin-bottom: 4px;
+}
+.impact-stat .lbl { color: #999; font-size: 14px; }
+
+/* ─── PRICING / CTA ─── */
+.cta-section {
+  padding: 80px 48px; text-align: center;
+}
+.cta-inner { max-width: 700px; margin: 0 auto; }
+.cta-box {
+  background: var(--bws-charcoal);
+  border-radius: 24px; padding: 64px 48px;
+  position: relative; overflow: hidden;
+}
+.cta-box::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(200,169,110,0.12), transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(200,169,110,0.08), transparent 50%);
+}
+.cta-box > * { position: relative; z-index: 1; }
+.cta-box h2 {
+  font-size: 32px; font-weight: 800; color: #fff;
+  margin-bottom: 12px;
+}
+.cta-box p {
+  font-size: 17px; color: #999; line-height: 1.7;
+  margin-bottom: 36px;
+}
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: linear-gradient(135deg, var(--bws-gold), var(--bws-gold-light));
+  color: var(--bws-charcoal); padding: 16px 40px;
+  border-radius: 12px; font-size: 17px; font-weight: 700;
+  text-decoration: none; transition: all 0.3s;
+  border: none; cursor: pointer; font-family: inherit;
+}
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(200,169,110,0.3);
+}
+.cta-sub {
+  margin-top: 16px; font-size: 14px; color: #666;
+}
+.cta-sub a { color: var(--bws-gold-light); text-decoration: none; }
+
+/* ─── FOOTER ─── */
+.footer {
+  padding: 32px 48px;
+  border-top: 1px solid var(--bws-border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-left {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; color: var(--bws-muted);
+}
+.footer-left .mark {
+  width: 24px; height: 24px;
+  background: var(--bws-charcoal);
+  border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 900; color: var(--bws-gold);
+}
+.footer-right { font-size: 12px; color: #bbb; }
+.footer-right a { color: var(--bws-gold); text-decoration: none; }
+
+/* ─── SCROLL ANIMATIONS ─── */
+.fade-in {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .header { padding: 12px 20px; }
+  .header-badge { display: none; }
+  .hero { padding: 100px 24px 48px; }
+  .hero h1 { font-size: 28px; }
+  .hero-sub { font-size: 16px; }
+  .hero-meta { flex-wrap: wrap; gap: 16px; }
+  .hero-meta-item { font-size: 12px; min-width: 40%; }
+  .section, .problem, .current-site, .comparison, .preview, .cta-section { padding: 48px 20px; }
+  .impact { padding: 48px 20px; }
+  .section-title { font-size: 24px; }
+  .section-desc { font-size: 15px; }
+  .problem-grid, .solution-grid { grid-template-columns: 1fr; }
+  .comparison-frames { grid-template-columns: 1fr; }
+  .impact-stats { grid-template-columns: 1fr; gap: 16px; }
+  .impact-stat { padding: 24px; }
+  .impact-stat .num { font-size: 32px; }
+  .impact-stat .lbl { font-size: 13px; }
+  .site-frame-body { height: 350px; }
+  .comp-frame { height: 300px; }
+  .preview-body { height: 400px; }
+  .cta-box { padding: 36px 20px; }
+  .cta-box h2 { font-size: 24px; }
+  .cta-btn { padding: 14px 28px; font-size: 15px; }
+  .footer { flex-direction: column; gap: 8px; text-align: center; }
+  .hero-client-tag { flex-wrap: wrap; gap: 6px; }
+}
+
+@media (max-width: 420px) {
+  .hero h1 { font-size: 24px; }
+  .hero-meta { gap: 12px; }
+  .hero-meta-item { min-width: 100%; }
+  .impact-stat .num { font-size: 28px; }
+  .comp-frame { height: 240px; }
+  .preview-body { height: 320px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="header">
+  <a href="https://brandos.hagitantebi.co.il" class="header-logo" target="_blank">
+    <div class="header-logo-mark">BW</div>
+    <div class="header-logo-text">Brand Worlds Studio</div>
+  </a>
+  <div class="header-badge">הצעת שדרוג — מסמך ייעודי</div>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-client-tag">
+      <span class="tag">לקוח: אייל סלע</span>
+      <span class="tag">לוגיסטיקו בע״מ</span>
+    </div>
+    <h1>האתר שלך עובד.<br>אבל הוא לא <span class="hl">עובד בשבילך.</span></h1>
+    <p class="hero-sub">
+      eyalsela.com הוא אתר קיים עם מידע רלוונטי — אבל הוא לא משדר את הרמה, המקצועיות והאמינות שלוגיסטיקו באמת מייצגת. מגיע לך אתר שמרגיש כמו החברה שאתה.
+    </p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><strong>תאריך</strong>מרץ 2026</div>
+      <div class="hero-meta-item"><strong>סוג</strong>שדרוג אתר + נוכחות דיגיטלית</div>
+      <div class="hero-meta-item"><strong>DNA מותגי</strong>Professional Authority</div>
+      <div class="hero-meta-item"><strong>מוכן ע״י</strong>חגית אנטבי רסולי</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROBLEM ═══ -->
+<section class="problem">
+  <div class="problem-inner">
+    <div class="section-label fade-in">מה לא עובד היום</div>
+    <h2 class="section-title fade-in">האתר הנוכחי מפספס לקוחות</h2>
+    <p class="section-desc fade-in">
+      כשלקוח פוטנציאלי מחפש חברת שילוח — האתר הוא הרושם הראשון. ברגע שהרושם לא מתאים לרמה של השירות, הלקוח עובר הלאה.
+    </p>
+    <div class="problem-grid">
+      <div class="problem-card fade-in">
+        <div class="icon">📱</div>
+        <h3>לא מותאם למובייל</h3>
+        <p>האתר לא מגיב (Responsive) כמו שצריך. יותר מ-70% מהגלישה היום היא מנייד — וחוויית המשתמש שם בעייתית.</p>
+      </div>
+      <div class="problem-card fade-in">
+        <div class="icon">🎨</div>
+        <h3>עיצוב מיושן</h3>
+        <p>גרפיקה מ-WhatsApp, תמונות באיכות נמוכה, אימוג׳ים בטקסט — לא משדרים מקצועיות של חברת שילוח בינלאומית.</p>
+      </div>
+      <div class="problem-card fade-in">
+        <div class="icon">🔄</div>
+        <h3>חזרתיות ובלגן</h3>
+        <p>אותו מסר חוזר כמה פעמים בדף הבית, כפתורי CTA שמפנים למקומות שונים, תוכן ישן (קורונה) שעדיין מופיע.</p>
+      </div>
+      <div class="problem-card fade-in">
+        <div class="icon">🏢</div>
+        <h3>לא משדר סמכות</h3>
+        <p>חברה עם 25+ שנות ניסיון ו-120+ מדינות יעד — צריכה אתר שמשדר ״אנחנו בליגה אחרת״. לא דף נחיתה של 2019.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CURRENT SITE ═══ -->
+<section class="current-site">
+  <div class="current-site-inner">
+    <div class="section-label fade-in" style="color:var(--bws-gold-light)">המצב הנוכחי</div>
+    <h2 class="section-title fade-in" style="color:#fff">eyalsela.com — כמו שהוא היום</h2>
+    <p class="section-desc fade-in" style="color:#888">
+      האתר עובד. המידע שם. אבל הרושם שהוא יוצר לא שווה ערך לחברה שעומדת מאחוריו.
+    </p>
+    <div class="site-frame fade-in">
+      <div class="site-frame-bar">
+        <div class="site-frame-dot r"></div>
+        <div class="site-frame-dot y"></div>
+        <div class="site-frame-dot g"></div>
+        <div class="site-frame-url">eyalsela.com</div>
+      </div>
+      <div class="site-frame-body">
+        <iframe src="https://eyalsela.com/" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+        <div class="site-verdict">
+          <span class="verdict-badge">דורש שדרוג</span>
+          <span class="verdict-text">עיצוב, מסרים, מבנה, מובייל — הכל צריך רענון</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ COMPARISON ═══ -->
+<section class="comparison">
+  <div class="comparison-inner">
+    <div class="section-label fade-in">לפני ← אחרי</div>
+    <h2 class="section-title fade-in">מאתר ישן → לנוכחות דיגיטלית שמוכרת</h2>
+    <p class="section-desc fade-in">
+      זה לא רק שינוי עיצובי — זה שינוי תפיסתי. האתר החדש בנוי לשדר אמינות, לייצר לידים, ולהפוך מבקרים ללקוחות.
+    </p>
+    <div class="comparison-frames">
+      <div class="comp-col fade-in">
+        <div class="comp-label before">● לפני — eyalsela.com</div>
+        <div class="comp-frame">
+          <iframe src="https://eyalsela.com/" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+        </div>
+      </div>
+      <div class="comp-col fade-in">
+        <div class="comp-label after">● אחרי — קונספט חדש</div>
+        <div class="comp-frame highlight">
+          <iframe src="logistiko-redesign-concept-embed.html" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SOLUTION ═══ -->
+<section class="section">
+  <div class="section-label fade-in">מה משתנה</div>
+  <h2 class="section-title fade-in">שדרוג שמורגש בכל פיקסל</h2>
+  <p class="section-desc fade-in">
+    הקונספט החדש בנוי על עקרונות של עיצוב מודרני, UX חכם, ומותג שמשדר סמכות.
+  </p>
+  <div class="solution-grid">
+    <div class="sol-card fade-in">
+      <div class="icon">🎯</div>
+      <h3>מיקוד במסר אחד חזק</h3>
+      <p>במקום 5 כפתורי CTA שמתחרים זה בזה — מסר מרכזי ברור, מבנה שמנהל את העין, וכפתור פעולה אחד דומיננטי.</p>
+    </div>
+    <div class="sol-card fade-in">
+      <div class="icon">✨</div>
+      <h3>עיצוב Premium</h3>
+      <p>אסתטיקה של חברה בינלאומית: טיפוגרפיה נקייה, צבעוניות Navy מקצועית, אנימציות עדינות שמשדרות טכנולוגיה.</p>
+    </div>
+    <div class="sol-card fade-in">
+      <div class="icon">📊</div>
+      <h3>מספרים שמדברים</h3>
+      <p>25+ שנות ניסיון, 120+ מדינות, 10K+ משלוחים בשנה — המספרים האלה מוצגים בצורה שבולטת ובונה אמינות מיידית.</p>
+    </div>
+    <div class="sol-card fade-in">
+      <div class="icon">📱</div>
+      <h3>Mobile-First</h3>
+      <p>כל אלמנט בנוי מהמובייל — responsive מושלם, טעינה מהירה, חוויית גלישה חלקה בכל מכשיר.</p>
+    </div>
+    <div class="sol-card fade-in">
+      <div class="icon">🗺️</div>
+      <h3>ויזואליזציה של שירותים</h3>
+      <p>כרטיסי שירות מעוצבים, אנימציית מפה עם נקודות חיבור — מראים ולא רק מספרים על יכולות החברה.</p>
+    </div>
+    <div class="sol-card fade-in">
+      <div class="icon">🔍</div>
+      <h3>SEO ומהירות</h3>
+      <p>קוד נקי, סמנטי, מותאם לגוגל. meta tags, Schema markup, וביצועים מהירים שמשפרים דירוג אורגני.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FULL PREVIEW ═══ -->
+<section class="preview">
+  <div class="preview-inner">
+    <div class="section-label fade-in">תצוגה מקדימה</div>
+    <h2 class="section-title fade-in">קונספט מלא — האתר החדש של לוגיסטיקו</h2>
+    <p class="section-desc fade-in">
+      גלול למטה לראות את כל הדף. זהו קונספט עיצובי מלא — מה-Hero ועד ה-Footer.
+    </p>
+    <div class="preview-frame fade-in">
+      <div class="preview-frame-bar">
+        <div class="site-frame-dot r"></div>
+        <div class="site-frame-dot y"></div>
+        <div class="site-frame-dot g"></div>
+        <div class="preview-frame-url">logistiko.co.il — קונספט</div>
+      </div>
+      <div class="preview-body">
+        <iframe src="logistiko-redesign-concept-embed.html" loading="lazy"></iframe>
+      </div>
+    </div>
+    <p class="preview-note">* זהו קונספט עיצובי. האתר הסופי ייבנה בהתאמה מלאה לדרישות ולתוכן הסופי.</p>
+  </div>
+</section>
+
+<!-- ═══ IMPACT ═══ -->
+<section class="impact">
+  <div class="impact-inner">
+    <div class="section-label fade-in">למה זה חשוב</div>
+    <h2 class="section-title fade-in">המספרים מדברים</h2>
+    <p class="section-desc fade-in">
+      שדרוג נוכחות דיגיטלית הוא לא הוצאה — זו השקעה עם תשואה ברורה.
+    </p>
+    <div class="impact-stats">
+      <div class="impact-stat fade-in">
+        <div class="num">75%</div>
+        <div class="lbl">מהגולשים שופטים אמינות<br>לפי עיצוב האתר</div>
+      </div>
+      <div class="impact-stat fade-in">
+        <div class="num">3.5×</div>
+        <div class="lbl">יותר פניות מאתר<br>עם UX מודרני</div>
+      </div>
+      <div class="impact-stat fade-in">
+        <div class="num">50%</div>
+        <div class="lbl">נוטשים אתר שלא<br>נטען תוך 3 שניות</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-box fade-in">
+      <h2>מוכן לשדרג?</h2>
+      <p>בוא נדבר על איך להפוך את הנוכחות הדיגיטלית של לוגיסטיקו למשהו שאתה באמת גאה בו — ושמביא תוצאות.</p>
+      <a href="https://wa.me/972542280300" class="cta-btn">בוא נדבר ←</a>
+      <div class="cta-sub">
+        או שלח מייל: <a href="mailto:hagit@brandworldsstudio.com">hagit@brandworldsstudio.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-left">
+    <div class="mark">BW</div>
+    <span>Brand Worlds Studio — הצעה ייעודית</span>
+  </div>
+  <div class="footer-right">
+    <a href="https://brandos.hagitantebi.co.il" target="_blank">brandos.hagitantebi.co.il</a>
+  </div>
+</footer>
+
+<!-- ═══ SCROLL ANIMATION ═══ -->
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach((el, i) => {
+  el.style.transitionDelay = (i % 4) * 0.1 + 's';
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>

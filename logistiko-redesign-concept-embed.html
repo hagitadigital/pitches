@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logistiko Redesign Concept</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1B3A5C;--navy-deep:#0D1B2A;--sky:#4A90D9;--sky-light:#6BA8E8;--ice:#A8C4E0;--white:#FFF;--g50:#F7F9FC;--g100:#EEF2F7;--g200:#D5DDE8;--g400:#8A9BB5;--g600:#4A5568}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Heebo',sans-serif;background:var(--white);color:var(--navy-deep);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.nav{position:relative;top:0;right:0;left:0;z-index:100;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(13,27,42,.95)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--sky),var(--navy));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;font-weight:900;font-family:'Inter',sans-serif}
+.nav-logo-text{color:#fff;font-size:19px;font-weight:700}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+.nav-links a{color:var(--ice);text-decoration:none;font-size:14px}
+.nav-cta{background:rgba(74,144,217,.15)!important;border:1px solid rgba(74,144,217,.3);color:var(--sky-light)!important;padding:8px 20px;border-radius:8px;font-weight:500!important}
+.hero{position:relative;padding:60px 40px 50px;background:var(--navy-deep);overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 50%,rgba(74,144,217,.15),transparent),radial-gradient(ellipse 50% 80% at 80% 20%,rgba(27,58,92,.6),transparent)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(74,144,217,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(74,144,217,.06) 1px,transparent 1px);background-size:80px 80px}
+.hero-globe{position:absolute;left:-10%;top:50%;transform:translateY(-50%);width:500px;height:500px;border-radius:50%;border:1px solid rgba(74,144,217,.12)}
+.hero-globe::before,.hero-globe::after{content:'';position:absolute;border-radius:50%;border:1px solid rgba(74,144,217,.08)}
+.hero-globe::before{inset:60px}.hero-globe::after{inset:140px}
+.rl{display:none}
+.hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:0 20px;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(74,144,217,.12);border:1px solid rgba(74,144,217,.25);border-radius:100px;padding:6px 16px;margin-bottom:24px}
+.hero-badge span{color:var(--sky-light);font-size:12px;font-weight:500;letter-spacing:.5px}
+.hero-badge .dot{width:6px;height:6px;background:var(--sky);border-radius:50%}
+.hero h1{font-size:clamp(32px,5vw,56px);font-weight:900;color:#fff;line-height:1.1;margin-bottom:18px}
+.hero h1 .hl{background:linear-gradient(135deg,var(--sky),var(--sky-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:17px;color:var(--ice);line-height:1.7;max-width:560px;margin-bottom:32px;font-weight:300}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--sky);color:#fff;padding:13px 28px;border-radius:10px;font-size:15px;font-weight:600;text-decoration:none;border:none;cursor:pointer;font-family:inherit}
+.btn-s{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#fff;padding:13px 28px;border-radius:10px;font-size:15px;font-weight:500;text-decoration:none;border:1px solid rgba(255,255,255,.2)}
+.hero-stats{display:flex;gap:36px;margin-top:40px;padding-top:28px;border-top:1px solid rgba(255,255,255,.08)}
+.hero-stat .num{font-size:30px;font-weight:900;color:#fff;font-family:'Inter',sans-serif}
+.hero-stat .num span{color:var(--sky)}
+.hero-stat .lbl{font-size:13px;color:var(--g400);margin-top:2px}
+.services{padding:60px 40px;max-width:1200px;margin:0 auto}
+.sl{display:inline-flex;align-items:center;gap:8px;color:var(--sky);font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+.sl::before{content:'';width:20px;height:2px;background:var(--sky)}
+.st{font-size:clamp(26px,3.5vw,40px);font-weight:900;color:var(--navy-deep);line-height:1.2;margin-bottom:16px}
+.sd{font-size:16px;color:var(--g600);line-height:1.7;max-width:580px;margin-bottom:40px}
+.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.sc{position:relative;background:var(--g50);border-radius:16px;padding:28px 24px;overflow:hidden;border:1px solid transparent}
+.sc::before{content:'';position:absolute;top:0;right:0;width:80px;height:80px;background:radial-gradient(circle,rgba(74,144,217,.08),transparent);border-radius:0 16px 0 80px}
+.si{width:48px;height:48px;background:linear-gradient(135deg,var(--navy-deep),var(--navy));border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;font-size:20px}
+.sc h3{font-size:17px;font-weight:700;color:var(--navy-deep);margin-bottom:8px}
+.sc p{font-size:14px;color:var(--g600);line-height:1.6}
+.ts{background:var(--navy-deep);padding:48px 40px}
+.ti-g{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.ti{text-align:center}
+.ti .big{font-size:40px;font-weight:900;font-family:'Inter',sans-serif;background:linear-gradient(135deg,#fff,var(--ice));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ti .big span{background:linear-gradient(135deg,var(--sky),var(--sky-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ti .desc{color:var(--g400);font-size:13px;margin-top:6px}
+.why{padding:60px 40px;background:var(--g50)}
+.why-inner{max-width:1200px;margin:0 auto}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.wv{position:relative;height:380px;background:var(--navy-deep);border-radius:20px;overflow:hidden}
+.wv::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 40%,rgba(74,144,217,.2),transparent 60%),radial-gradient(circle at 70% 70%,rgba(27,58,92,.4),transparent 50%)}
+.md{position:absolute;inset:30px}
+.mdot{position:absolute;width:8px;height:8px;background:var(--sky);border-radius:50%}
+.mdot::after{content:'';position:absolute;inset:-3px;border-radius:50%;border:1px solid var(--sky);opacity:.4}
+.mdot:nth-child(1){top:25%;right:30%}.mdot:nth-child(2){top:45%;right:60%}.mdot:nth-child(3){top:60%;right:20%}.mdot:nth-child(4){top:35%;right:75%}.mdot:nth-child(5){top:70%;right:50%}
+.ml{position:absolute;height:1px;background:linear-gradient(90deg,var(--sky),transparent);opacity:.3;transform-origin:right center}
+.ml:nth-child(6){top:28%;right:33%;width:100px;transform:rotate(30deg)}.ml:nth-child(7){top:50%;right:25%;width:120px;transform:rotate(-20deg)}.ml:nth-child(8){top:40%;right:63%;width:70px;transform:rotate(50deg)}
+.os{position:absolute;bottom:20px;right:20px;background:rgba(13,27,42,.85);backdrop-filter:blur(12px);border:1px solid rgba(74,144,217,.2);border-radius:14px;padding:16px 22px;color:#fff}
+.sr{display:flex;align-items:center;gap:10px;margin-bottom:6px}.sr:last-child{margin-bottom:0}
+.sr-i{width:28px;height:28px;background:rgba(74,144,217,.2);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px}
+.sr-v{font-size:16px;font-weight:700;font-family:'Inter',sans-serif}
+.sr-l{font-size:11px;color:var(--g400)}
+.wl{list-style:none;margin-top:28px}
+.wl li{display:flex;gap:14px;margin-bottom:20px;align-items:flex-start}
+.wl .ck{width:24px;height:24px;min-width:24px;background:rgba(74,144,217,.1);border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--sky);font-size:12px;margin-top:2px}
+.wl .tx h4{font-size:15px;font-weight:700;color:var(--navy-deep);margin-bottom:3px}
+.wl .tx p{font-size:13px;color:var(--g600);line-height:1.6}
+.cta{padding:60px 40px;text-align:center}
+.cta-c{max-width:900px;margin:0 auto;background:var(--navy-deep);border-radius:24px;padding:50px 40px;position:relative;overflow:hidden}
+.cta-c::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 0%,rgba(74,144,217,.2),transparent 50%),radial-gradient(ellipse at 80% 100%,rgba(74,144,217,.15),transparent 50%)}
+.cta-c>*{position:relative;z-index:1}
+.cta-c h2{font-size:clamp(24px,3.5vw,36px);font-weight:900;color:#fff;margin-bottom:12px}
+.cta-c p{font-size:16px;color:var(--ice);margin-bottom:28px;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.7}
+.cta-c .btn-p{font-size:16px;padding:14px 36px}
+.cta-ph{margin-top:18px;color:var(--g400);font-size:14px;direction:ltr}
+.cta-ph a{color:var(--sky-light);text-decoration:none;font-weight:600;font-family:'Inter',sans-serif}
+footer{background:var(--navy-deep);padding:40px 40px 28px;border-top:1px solid rgba(74,144,217,.1)}
+.ft-in{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+.ft-logo{display:flex;align-items:center;gap:10px}
+.ft-logo-i{width:32px;height:32px;background:linear-gradient(135deg,var(--sky),var(--navy));border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;font-weight:900;font-family:'Inter',sans-serif}
+.ft-logo-t{color:var(--g400);font-size:14px;font-weight:500}
+.ft-links{display:flex;gap:28px;list-style:none}
+.ft-links a{color:var(--g400);text-decoration:none;font-size:13px}
+.ft-copy{text-align:center;color:rgba(138,155,181,.5);font-size:12px;margin-top:28px;max-width:1200px;margin-left:auto;margin-right:auto;padding-top:18px;border-top:1px solid rgba(255,255,255,.04)}
+@media(max-width:900px){.nav{padding:12px 20px}.nav-links{display:none}.hero{padding:40px 20px 36px}.hero-content{padding:0}.hero h1{font-size:28px}.hero-sub{font-size:14px;margin-bottom:20px}.hero-stats{flex-wrap:wrap;gap:16px}.hero-stat .num{font-size:22px}.hero-stat .lbl{font-size:11px}.services{padding:40px 20px}.sg{grid-template-columns:1fr}.ts{padding:32px 20px}.ti-g{grid-template-columns:repeat(2,1fr);gap:20px}.ti .big{font-size:28px}.why{padding:40px 20px}.why-grid{grid-template-columns:1fr;gap:28px}.wv{height:220px}.cta{padding:40px 20px}.cta-c{padding:32px 20px}footer{padding:28px 20px 18px}.ft-in{flex-direction:column;gap:16px}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="#" class="nav-logo"><div class="nav-logo-icon">L</div><div class="nav-logo-text">לוגיסטיקו</div></a>
+  <ul class="nav-links">
+    <li><a href="#">שירותים</a></li>
+    <li><a href="#">אודות</a></li>
+    <li><a href="#">מאמרים</a></li>
+    <li><a href="#">Cargolator</a></li>
+    <li><a href="#" class="nav-cta">ייעוץ חינם</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-globe"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><div class="dot"></div><span>מומחים לשילוח בינלאומי מ-1998</span></div>
+    <h1>המשלוח שלכם.<br><span class="hl">האחריות שלנו.</span></h1>
+    <p class="hero-sub">הובלה ימית ואווירית, עמילות מכס, מטענים דחופים וחריגים, טיסות צ׳רטר — פתרון מקצועי לכל אתגר לוגיסטי.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-p">קבלו הצעת מחיר &larr;</a>
+      <a href="tel:054-2280300" class="btn-s">054-2280300</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">25<span>+</span></div><div class="lbl">שנות ניסיון</div></div>
+      <div class="hero-stat"><div class="num">120<span>+</span></div><div class="lbl">מדינות יעד</div></div>
+      <div class="hero-stat"><div class="num">98<span>%</span></div><div class="lbl">שביעות רצון</div></div>
+      <div class="hero-stat"><div class="num">24<span>/7</span></div><div class="lbl">מענה ותמיכה</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="sl">השירותים שלנו</div>
+  <h2 class="st">פתרונות לוגיסטיים<br>מקצה לקצה</h2>
+  <p class="sd">מגוון שירותי שילוח בינלאומי מקיפים — מהתכנון הראשוני ועד הסחורה אצלכם במחסן.</p>
+  <div class="sg">
+    <div class="sc"><div class="si">✈️</div><h3>הובלה אווירית</h3><p>משלוחים מהירים בטיסות סדירות וצ׳רטר. פתרונות למטענים דחופים עם זמני אספקה קצרים.</p></div>
+    <div class="sc"><div class="si">🚢</div><h3>הובלה ימית</h3><p>מכולות מלאות (FCL) וחלקיות (LCL). פתרונות חסכוניים למטענים בנפח גדול לכל נמל בעולם.</p></div>
+    <div class="sc"><div class="si">📋</div><h3>עמילות מכס</h3><p>טיפול מלא בשחרור מטענים, רגולציה ותיעוד. חיסכון בזמן ועלויות מול רשויות המכס.</p></div>
+    <div class="sc"><div class="si">⚡</div><h3>מטענים דחופים</h3><p>פתרונות אקספרס למצבי חירום. הובלה מהירה כשהזמן קריטי — כולל החכרת מטוסי צ׳רטר.</p></div>
+    <div class="sc"><div class="si">🌡️</div><h3>מטענים חריגים</h3><p>פרויקטים מיוחדים, מטענים חורגי מידות, משלוחים מבוקרי טמפרטורה — בהתאמה מלאה.</p></div>
+    <div class="sc"><div class="si">📊</div><h3>ייעוץ וניהול</h3><p>ייעוץ אסטרטגי לשרשרת אספקה, ניהול תפעולי מלא, וטכנולוגיות מתקדמות לשקיפות מלאה.</p></div>
+  </div>
+</section>
+
+<section class="ts">
+  <div class="ti-g">
+    <div class="ti"><div class="big">10K<span>+</span></div><div class="desc">משלוחים בשנה</div></div>
+    <div class="ti"><div class="big">500<span>+</span></div><div class="desc">לקוחות פעילים</div></div>
+    <div class="ti"><div class="big">25<span>+</span></div><div class="desc">שנות פעילות</div></div>
+    <div class="ti"><div class="big">5<span>★</span></div><div class="desc">דירוג לקוחות</div></div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="why-inner">
+    <div class="why-grid">
+      <div class="wv">
+        <div class="md">
+          <div class="mdot"></div><div class="mdot"></div><div class="mdot"></div><div class="mdot"></div><div class="mdot"></div>
+          <div class="ml"></div><div class="ml"></div><div class="ml"></div>
+        </div>
+        <div class="os">
+          <div class="sr"><div class="sr-i">📦</div><div><div class="sr-v">847</div><div class="sr-l">משלוחים החודש</div></div></div>
+          <div class="sr"><div class="sr-i">⏱️</div><div><div class="sr-v">99.2%</div><div class="sr-l">עמידה בלו״ז</div></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="sl">למה לוגיסטיקו</div>
+        <h2 class="st">ניסיון של עשורים.<br>מקצועיות ללא פשרות.</h2>
+        <ul class="wl">
+          <li><div class="ck">✓</div><div class="tx"><h4>ליווי אישי מקצה לקצה</h4><p>מנהל לקוח ייעודי שמלווה אתכם מהרגע הראשון ועד שהסחורה אצלכם.</p></div></li>
+          <li><div class="ck">✓</div><div class="tx"><h4>חיסכון אמיתי בעלויות</h4><p>אופטימיזציה של מסלולים ונפחים — חוסכים לכם אלפי שקלים בכל משלוח.</p></div></li>
+          <li><div class="ck">✓</div><div class="tx"><h4>שקיפות מלאה</h4><p>מעקב בזמן אמת, דיווח שוטף, ואפליקציית Cargolator לחישוב עצמאי.</p></div></li>
+          <li><div class="ck">✓</div><div class="tx"><h4>פתרונות יצירתיים</h4><p>כשכולם אומרים ״אי אפשר״ — אנחנו מוצאים את הדרך. טיסות צ׳רטר, מסלולים חלופיים, ועוד.</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="cta-c">
+    <h2>רוצים לחסוך במשלוח הבא?</h2>
+    <p>פגישת ייעוץ ראשונה ללא עלות — נתכנן יחד את המסלול החסכוני והיעיל ביותר עבורכם.</p>
+    <a href="#" class="btn-p">קבעו פגישת ייעוץ &larr;</a>
+    <div class="cta-ph">או התקשרו: <a href="tel:054-2280300">054-228-0300</a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-in">
+    <div class="ft-logo"><div class="ft-logo-i">L</div><div class="ft-logo-t">לוגיסטיקו בע״מ — מומחים לשילוח בינלאומי</div></div>
+    <ul class="ft-links">
+      <li><a href="#">אודות</a></li>
+      <li><a href="#">שירותים</a></li>
+      <li><a href="#">מאמרים</a></li>
+      <li><a href="#">צור קשר</a></li>
+    </ul>
+  </div>
+  <div class="ft-copy">&copy; 2026 לוגיסטיקו בע״מ. כל הזכויות שמורות.</div>
+</footer>
+</body></html>
