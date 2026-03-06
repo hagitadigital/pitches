@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>הצעה | Brand Worlds Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.5.0/lz-string.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Heebo',sans-serif;background:#0a0a0f;color:#e8e4df;direction:rtl;line-height:1.7}
+a{color:#c9a96e;text-decoration:none}
+
+.topbar{background:rgba(10,10,15,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,169,110,0.15);padding:16px 40px;display:flex;justify-content:space-between;align-items:center;position:fixed;top:0;width:100%;z-index:100}
+.topbar .logo{font-weight:700;font-size:14px;color:#c9a96e;letter-spacing:1px}
+.topbar .badge{font-size:11px;color:rgba(232,228,223,0.5);border:1px solid rgba(201,169,110,0.2);padding:4px 12px;border-radius:20px}
+
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 40px 80px;background:radial-gradient(ellipse at 50% 0%,rgba(201,169,110,0.08) 0%,transparent 60%)}
+.hero h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.2;max-width:800px;margin-bottom:24px;background:linear-gradient(135deg,#fff 0%,#c9a96e 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:clamp(1rem,2vw,1.25rem);color:rgba(232,228,223,0.65);max-width:600px;font-weight:300}
+
+.meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:rgba(201,169,110,0.1);max-width:700px;margin:60px auto 0;border:1px solid rgba(201,169,110,0.1);border-radius:12px;overflow:hidden}
+.meta-item{background:#0a0a0f;padding:20px;text-align:center}
+.meta-item .label{font-size:11px;color:rgba(232,228,223,0.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.meta-item .value{font-size:14px;font-weight:500;color:#e8e4df}
+
+section{padding:100px 40px;max-width:1100px;margin:0 auto}
+.section-label{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#c9a96e;margin-bottom:12px}
+section h2{font-size:clamp(1.5rem,3.5vw,2.5rem);font-weight:800;margin-bottom:16px}
+.section-sub{color:rgba(232,228,223,0.6);font-size:1.05rem;max-width:650px;margin-bottom:50px;font-weight:300}
+
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
+.card{background:rgba(255,255,255,0.03);border:1px solid rgba(201,169,110,0.1);border-radius:16px;padding:32px;transition:all 0.3s}
+.card:hover{border-color:rgba(201,169,110,0.3);transform:translateY(-4px)}
+.card .card-icon{font-size:28px;margin-bottom:16px}
+.card h3{font-size:1.1rem;font-weight:700;margin-bottom:10px}
+.card p{font-size:0.9rem;color:rgba(232,228,223,0.55);line-height:1.6}
+
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px;text-align:center;padding:60px 0}
+.stat-number{font-size:clamp(2.5rem,5vw,4rem);font-weight:900;color:#c9a96e;line-height:1}
+.stat-desc{font-size:0.9rem;color:rgba(232,228,223,0.5);margin-top:10px}
+
+.before-after{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.ba-col{border-radius:16px;overflow:hidden;border:1px solid rgba(201,169,110,0.15)}
+.ba-label{padding:14px 20px;font-size:13px;font-weight:600;text-align:center}
+.ba-col.before .ba-label{background:rgba(220,50,50,0.15);color:#e86060}
+.ba-col.after .ba-label{background:rgba(80,200,120,0.15);color:#50c878}
+.ba-col img{width:100%;display:block}
+.ba-placeholder{padding:80px;text-align:center;color:rgba(232,228,223,0.3)}
+
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.pkg{background:rgba(255,255,255,0.03);border:1px solid rgba(201,169,110,0.1);border-radius:16px;padding:36px;text-align:center;transition:all 0.3s}
+.pkg.featured{border-color:#c9a96e;background:rgba(201,169,110,0.06);transform:scale(1.03)}
+.pkg h3{font-size:1.2rem;margin-bottom:8px}
+.pkg .price{font-size:2.2rem;font-weight:900;color:#c9a96e;margin-bottom:20px}
+.pkg ul{list-style:none;text-align:right}
+.pkg ul li{padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:0.9rem;color:rgba(232,228,223,0.6)}
+.pkg ul li::before{content:"✓ ";color:#c9a96e}
+
+.preview-frame{border:1px solid rgba(201,169,110,0.15);border-radius:16px;overflow:hidden}
+.preview-frame img{width:100%;display:block}
+.preview-note{text-align:center;font-size:0.8rem;color:rgba(232,228,223,0.35);margin-top:16px;font-style:italic}
+
+.cta-section{text-align:center;padding:100px 40px}
+.cta-section h2{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;margin-bottom:20px}
+.cta-section p{color:rgba(232,228,223,0.6);max-width:550px;margin:0 auto 40px;font-weight:300}
+.cta-btn{display:inline-block;padding:16px 48px;background:linear-gradient(135deg,#c9a96e,#a07c4a);color:#0a0a0f;font-weight:700;font-size:1.1rem;border-radius:50px;transition:all 0.3s}
+.cta-btn:hover{transform:scale(1.05);box-shadow:0 8px 30px rgba(201,169,110,0.3)}
+.cta-email{margin-top:20px;font-size:0.9rem;color:rgba(232,228,223,0.4)}
+
+.timeline-section .timeline{position:relative;max-width:600px;margin:0 auto}
+.timeline::before{content:'';position:absolute;right:20px;top:0;bottom:0;width:2px;background:rgba(201,169,110,0.2)}
+.timeline-item{position:relative;padding:0 60px 40px 0;text-align:right}
+.timeline-item::before{content:attr(data-step);position:absolute;right:8px;top:0;width:26px;height:26px;background:#c9a96e;color:#0a0a0f;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.timeline-item h4{font-size:1rem;font-weight:700;margin-bottom:4px}
+.timeline-item p{font-size:0.85rem;color:rgba(232,228,223,0.5)}
+
+footer{text-align:center;padding:40px;border-top:1px solid rgba(201,169,110,0.1);font-size:12px;color:rgba(232,228,223,0.3)}
+
+.empty-state{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px}
+.empty-state h1{font-size:2rem;font-weight:700;margin-bottom:16px;color:#c9a96e}
+.empty-state p{color:rgba(232,228,223,0.5);font-size:1.1rem}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.animate{animation:fadeUp 0.6s ease-out both}
+.delay-1{animation-delay:0.1s}.delay-2{animation-delay:0.2s}.delay-3{animation-delay:0.3s}.delay-4{animation-delay:0.4s}
+
+@media(max-width:768px){
+  .before-after,.pricing-grid{grid-template-columns:1fr}
+  .hero,.cta-section,section{padding:60px 20px}
+  .meta-grid{grid-template-columns:1fr 1fr}
+  .pkg.featured{transform:none}
+  .topbar{padding:12px 16px}
+}
+</style>
+</head>
+<body>
+
+<div id="app"></div>
+
+<script>
+// Decode data from URL
+function getData() {
+  try {
+    const hash = window.location.hash.substring(1);
+    if (!hash) return null;
+    const params = new URLSearchParams(hash);
+    const compressed = params.get('d');
+    if (!compressed) return null;
+    const json = LZString.decompressFromEncodedURIComponent(compressed);
+    return JSON.parse(json);
+  } catch(e) {
+    console.error('Error decoding pitch data:', e);
+    return null;
+  }
+}
+
+function esc(str) {
+  if (!str) return '';
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+function renderPitch(data) {
+  const { sections, fields, config } = data;
+  const f = (section, key) => esc(fields?.[section]?.[key] || '');
+  const raw = (section, key) => fields?.[section]?.[key] || '';
+  
+  // Dynamic title
+  document.title = (raw('hero','headline') || 'הצעה') + ' | ' + (raw('config','brandName') || 'Brand Worlds Studio');
+
+  let html = '';
+  
+  // Topbar
+  const brandName = f('config','brandName') || 'Brand Worlds Studio';
+  const brandUrl = f('config','brandUrl') || 'https://brandos.hagitantebi.co.il';
+  html += `<div class="topbar">
+    <a href="${brandUrl}" class="logo">BW &nbsp;${brandName}</a>
+    <span class="badge">${f('config','badgeText') || 'הצעת שדרוג — מסמך ייעודי'}</span>
+  </div>`;
+
+  sections.forEach(sId => {
+    switch(sId) {
+      case 'hero':
+        html += `<div class="hero">
+          <h1 class="animate">${f('hero','headline')}</h1>
+          <p class="animate delay-1">${f('hero','subtext')}</p>
+          ${sections.includes('clientInfo') ? `
+          <div class="meta-grid animate delay-2">
+            <div class="meta-item"><div class="label">תאריך</div><div class="value">${f('clientInfo','date') || new Date().toLocaleDateString('he-IL',{month:'long',year:'numeric'})}</div></div>
+            <div class="meta-item"><div class="label">לקוח</div><div class="value">${f('clientInfo','clientName')}</div></div>
+            <div class="meta-item"><div class="label">סוג</div><div class="value">${f('clientInfo','projectType')}</div></div>
+            <div class="meta-item"><div class="label">DNA מותגי</div><div class="value">${f('clientInfo','brandDna')}</div></div>
+          </div>` : ''}
+        </div>`;
+        break;
+
+      case 'problems':
+        const problems = [1,2,3,4].filter(i => raw('problems','problem'+i+'_title'));
+        if (problems.length === 0) break;
+        html += `<section>
+          <div class="section-label">מה לא עובד היום</div>
+          <h2>${f('problems','sectionTitle')}</h2>
+          <p class="section-sub">${f('problems','sectionSubtitle')}</p>
+          <div class="cards-grid">
+            ${problems.map((i,idx) => `<div class="card animate delay-${idx+1}">
+              <div class="card-icon">${f('problems','problem'+i+'_icon')}</div>
+              <h3>${f('problems','problem'+i+'_title')}</h3>
+              <p>${f('problems','problem'+i+'_desc')}</p>
+            </div>`).join('')}
+          </div>
+        </section>`;
+        break;
+
+      case 'solutions':
+        const sols = [1,2,3,4,5,6].filter(i => raw('solutions','sol'+i+'_title'));
+        if (sols.length === 0) break;
+        html += `<section>
+          <div class="section-label">מה משתנה</div>
+          <h2>${f('solutions','sectionTitle')}</h2>
+          <p class="section-sub">${f('solutions','sectionSubtitle')}</p>
+          <div class="cards-grid">
+            ${sols.map((i,idx) => `<div class="card animate delay-${idx % 4 + 1}">
+              <div class="card-icon">${f('solutions','sol'+i+'_icon')}</div>
+              <h3>${f('solutions','sol'+i+'_title')}</h3>
+              <p>${f('solutions','sol'+i+'_desc')}</p>
+            </div>`).join('')}
+          </div>
+        </section>`;
+        break;
+
+      case 'stats':
+        const stats = [1,2,3].filter(i => raw('stats','stat'+i+'_number'));
+        if (stats.length === 0) break;
+        html += `<section>
+          <div class="section-label">${f('stats','sectionLabel') || 'למה זה חשוב'}</div>
+          <h2>${f('stats','sectionTitle') || 'המספרים מדברים'}</h2>
+          <div class="stats-row">
+            ${stats.map((i,idx) => `<div class="stat-item animate delay-${idx+1}">
+              <div class="stat-number">${f('stats','stat'+i+'_number')}</div>
+              <div class="stat-desc">${f('stats','stat'+i+'_desc')}</div>
+            </div>`).join('')}
+          </div>
+        </section>`;
+        break;
+
+      case 'beforeAfter':
+        html += `<section>
+          <div class="section-label">לפני ← אחרי</div>
+          <h2>${f('beforeAfter','sectionTitle')}</h2>
+          <p class="section-sub">${f('beforeAfter','sectionSubtitle')}</p>
+          <div class="before-after">
+            <div class="ba-col before animate">
+              <div class="ba-label">● ${f('beforeAfter','beforeLabel')}</div>
+              ${raw('beforeAfter','beforeImage') ? `<img src="${f('beforeAfter','beforeImage')}" alt="before">` : '<div class="ba-placeholder">תמונת לפני</div>'}
+            </div>
+            <div class="ba-col after animate delay-2">
+              <div class="ba-label">● ${f('beforeAfter','afterLabel')}</div>
+              ${raw('beforeAfter','afterImage') ? `<img src="${f('beforeAfter','afterImage')}" alt="after">` : '<div class="ba-placeholder">תמונת אחרי</div>'}
+            </div>
+          </div>
+        </section>`;
+        break;
+
+      case 'pricing':
+        const pkgs = [1,2,3].filter(i => raw('pricing','pkg'+i+'_name'));
+        if (pkgs.length === 0) break;
+        html += `<section>
+          <div class="section-label">תמחור</div>
+          <h2>${f('pricing','sectionTitle')}</h2>
+          <div class="pricing-grid">
+            ${pkgs.map((i,idx) => {
+              const items = raw('pricing','pkg'+i+'_items').split('\n').filter(Boolean);
+              return `<div class="pkg${i===2?' featured':''} animate delay-${idx+1}">
+                <h3>${f('pricing','pkg'+i+'_name')}</h3>
+                <div class="price">${f('pricing','pkg'+i+'_price')}</div>
+                <ul>${items.map(item => `<li>${esc(item)}</li>`).join('')}</ul>
+              </div>`;
+            }).join('')}
+          </div>
+        </section>`;
+        break;
+
+      case 'timeline':
+        const steps = [1,2,3,4,5].filter(i => raw('timeline','step'+i+'_title'));
+        if (steps.length === 0) break;
+        html += `<section class="timeline-section">
+          <div class="section-label">שלבי עבודה</div>
+          <h2>${f('timeline','sectionTitle')}</h2>
+          <p class="section-sub">${f('timeline','sectionSubtitle')}</p>
+          <div class="timeline">
+            ${steps.map(i => `<div class="timeline-item animate" data-step="${i}">
+              <h4>${f('timeline','step'+i+'_title')}</h4>
+              <p>${f('timeline','step'+i+'_desc')}</p>
+            </div>`).join('')}
+          </div>
+        </section>`;
+        break;
+
+      case 'preview':
+        html += `<section>
+          <div class="section-label">תצוגה מקדימה</div>
+          <h2>${f('preview','sectionTitle')}</h2>
+          <div class="preview-frame">
+            ${raw('preview','previewImage') ? `<img src="${f('preview','previewImage')}" alt="preview">` : '<div class="ba-placeholder" style="padding:120px">תמונת קונספט</div>'}
+          </div>
+          <p class="preview-note">${f('preview','previewNote')}</p>
+        </section>`;
+        break;
+
+      case 'cta':
+        html += `<div class="cta-section">
+          <h2 class="animate">${f('cta','ctaTitle')}</h2>
+          <p class="animate delay-1">${f('cta','ctaText')}</p>
+          <a href="${f('cta','ctaButtonLink')}" class="cta-btn animate delay-2">${f('cta','ctaButtonText')}</a>
+          ${raw('cta','emailText') ? `<div class="cta-email animate delay-3">${raw('cta','emailLink') ? `<a href="${f('cta','emailLink')}">${f('cta','emailText')}</a>` : f('cta','emailText')}</div>` : ''}
+        </div>`;
+        break;
+    }
+  });
+
+  html += `<footer>BW &nbsp;&nbsp; ${brandName} — הצעה ייעודית<br><a href="${brandUrl}">${brandUrl.replace('https://','')}</a></footer>`;
+  
+  document.getElementById('app').innerHTML = html;
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.style.animationPlayState = 'running'; });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.animate').forEach(el => {
+    el.style.animationPlayState = 'paused';
+    observer.observe(el);
+  });
+  // Auto-play hero animations
+  document.querySelectorAll('.hero .animate').forEach(el => el.style.animationPlayState = 'running');
+}
+
+// Init
+const data = getData();
+if (data) {
+  renderPitch(data);
+} else {
+  document.getElementById('app').innerHTML = `
+    <div class="empty-state">
+      <h1>🔗 לא נמצאו נתונים</h1>
+      <p>הלינק לא תקין או שפג תוקפו.<br>יש ליצור הצעה חדשה דרך מערכת ההצעות.</p>
+    </div>`;
+}
+</script>
+</body>
+</html>

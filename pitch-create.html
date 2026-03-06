@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>יצירת הצעה | מערכת הצעות מחיר</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.5.0/lz-string.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Heebo',sans-serif;background:#0a0a0f;color:#e8e4df;direction:rtl;line-height:1.6}
+
+.app-header{background:rgba(10,10,15,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,169,110,0.15);padding:14px 28px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:50}
+.app-header .brand{display:flex;align-items:center;gap:10px}
+.app-header .brand span:first-child{color:#c9a96e;font-weight:700;font-size:15px}
+.app-header .brand span:last-child{font-size:14px;font-weight:500}
+
+.layout{display:grid;grid-template-columns:240px 1fr;min-height:calc(100vh - 52px)}
+
+/* Sidebar */
+.sidebar{border-left:1px solid rgba(201,169,110,0.1);padding:20px 14px;background:rgba(0,0,0,0.25);overflow-y:auto}
+.sidebar-title{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:#c9a96e;margin-bottom:14px;padding:0 8px}
+
+.section-toggle{display:flex;align-items:center;gap:8px;padding:9px 10px;margin-bottom:3px;border-radius:8px;cursor:pointer;transition:all 0.15s;border:1px solid transparent}
+.section-toggle:hover{background:rgba(201,169,110,0.05)}
+.section-toggle.active{background:rgba(201,169,110,0.08);border-color:rgba(201,169,110,0.12)}
+.section-toggle input[type=checkbox]{accent-color:#c9a96e;cursor:pointer}
+.section-toggle .icon{font-size:15px}
+.section-toggle .name{font-size:12.5px;flex:1}
+.section-toggle .arrows{display:flex;flex-direction:column;gap:0}
+.section-toggle .arrows button{background:none;border:none;color:rgba(232,228,223,0.25);cursor:pointer;font-size:10px;padding:0 2px;line-height:1}
+.section-toggle .arrows button:hover{color:#c9a96e}
+
+.sidebar-actions{margin-top:20px;display:flex;flex-direction:column;gap:8px;padding:0 4px}
+.btn-gold{width:100%;padding:11px;background:linear-gradient(135deg,#c9a96e,#a07c4a);color:#0a0a0f;border:none;border-radius:8px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;transition:all 0.2s}
+.btn-gold:hover{transform:scale(1.02);box-shadow:0 4px 16px rgba(201,169,110,0.25)}
+.btn-outline{width:100%;padding:11px;background:transparent;color:#c9a96e;border:1px solid rgba(201,169,110,0.25);border-radius:8px;font-weight:500;font-size:13px;cursor:pointer;font-family:inherit;transition:all 0.2s}
+.btn-outline:hover{border-color:#c9a96e;background:rgba(201,169,110,0.05)}
+
+/* Main */
+.main{padding:24px 28px;overflow-y:auto}
+
+.accordion{margin-bottom:12px;border:1px solid rgba(201,169,110,0.08);border-radius:12px;overflow:hidden;background:rgba(255,255,255,0.015)}
+.accordion-header{padding:14px 18px;cursor:pointer;display:flex;align-items:center;gap:10px;transition:background 0.15s}
+.accordion-header:hover{background:rgba(201,169,110,0.04)}
+.accordion-header.open{background:rgba(201,169,110,0.05);border-bottom:1px solid rgba(201,169,110,0.08)}
+.accordion-header .icon{font-size:18px}
+.accordion-header .title{font-weight:600;font-size:14px;flex:1}
+.accordion-header .chevron{font-size:11px;color:rgba(232,228,223,0.3);transition:transform 0.2s}
+.accordion-header.open .chevron{transform:rotate(90deg)}
+
+.accordion-body{padding:18px;display:grid;gap:14px}
+.field-group label{display:block;font-size:11.5px;color:rgba(232,228,223,0.45);margin-bottom:5px;font-weight:500}
+.field-group input,.field-group textarea{width:100%;padding:9px 13px;background:rgba(0,0,0,0.3);border:1px solid rgba(201,169,110,0.12);border-radius:8px;color:#e8e4df;font-size:13.5px;font-family:inherit;outline:none;transition:border-color 0.2s}
+.field-group input:focus,.field-group textarea:focus{border-color:rgba(201,169,110,0.4)}
+.field-group textarea{resize:vertical;min-height:60px}
+.field-group input::placeholder,.field-group textarea::placeholder{color:rgba(232,228,223,0.2)}
+
+/* Link modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(6px);display:flex;justify-content:center;align-items:center;z-index:100;padding:20px}
+.modal{background:#13131d;border:1px solid rgba(201,169,110,0.2);border-radius:16px;padding:32px;max-width:600px;width:100%;text-align:center}
+.modal h2{font-size:1.4rem;font-weight:700;margin-bottom:8px;color:#c9a96e}
+.modal p{font-size:0.9rem;color:rgba(232,228,223,0.5);margin-bottom:24px}
+.link-box{background:rgba(0,0,0,0.4);border:1px solid rgba(201,169,110,0.15);border-radius:10px;padding:14px;direction:ltr;text-align:left;font-size:12px;color:rgba(232,228,223,0.6);word-break:break-all;max-height:80px;overflow-y:auto;margin-bottom:16px}
+.modal-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.modal-btns button{padding:10px 24px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all 0.2s}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#c9a96e;color:#0a0a0f;padding:10px 24px;border-radius:8px;font-size:13px;font-weight:600;z-index:200;opacity:0;transition:opacity 0.3s}
+.toast.show{opacity:1}
+
+/* Config section */
+.config-bar{background:rgba(201,169,110,0.04);border:1px solid rgba(201,169,110,0.1);border-radius:10px;padding:14px 18px;margin-bottom:20px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.config-bar label{font-size:11px;color:rgba(232,228,223,0.4);margin-bottom:4px;display:block}
+.config-bar input{width:100%;padding:7px 10px;background:rgba(0,0,0,0.3);border:1px solid rgba(201,169,110,0.1);border-radius:6px;color:#e8e4df;font-size:12px;font-family:inherit;outline:none}
+
+@media(max-width:768px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{border-left:none;border-bottom:1px solid rgba(201,169,110,0.1);max-height:200px}
+  .config-bar{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="app-header">
+  <div class="brand">
+    <span>BW</span>
+    <span>מערכת הצעות מחיר</span>
+  </div>
+  <div style="font-size:11px;color:rgba(232,228,223,0.3)">v1.0</div>
+</div>
+
+<div class="layout">
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar"></div>
+
+  <!-- Main -->
+  <div class="main" id="main"></div>
+</div>
+
+<!-- Link Modal -->
+<div class="modal-overlay" id="modal" style="display:none">
+  <div class="modal">
+    <h2>🔗 הלינק מוכן!</h2>
+    <p>שלח את הלינק הזה ללקוח — הוא יראה הצעה ממותגת ומעוצבת</p>
+    <div class="link-box" id="linkBox"></div>
+    <div class="modal-btns">
+      <button onclick="copyLink()" class="btn-gold" style="border:none">📋 העתק לינק</button>
+      <button onclick="openLink()" style="background:transparent;color:#c9a96e;border:1px solid rgba(201,169,110,0.3)">🔗 פתח בחלון חדש</button>
+      <button onclick="shareWhatsApp()" style="background:#25D366;color:white;border:none;border-radius:8px">📱 שלח בוואטסאפ</button>
+      <button onclick="closeModal()" style="background:transparent;color:rgba(232,228,223,0.4);border:1px solid rgba(255,255,255,0.1)">סגור</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">הלינק הועתק! ✓</div>
+
+<script>
+// ============ SECTION DEFINITIONS ============
+const SECTIONS = {
+  hero: {
+    id:'hero', label:'Hero — כותרת ראשית', icon:'🎯',
+    fields:[
+      {key:'headline',label:'כותרת ראשית',type:'text',ph:'האתר שלך עובד. אבל הוא לא עובד בשבילך.'},
+      {key:'subtext',label:'תיאור משנה',type:'textarea',ph:'תיאור שמסביר את הבעיה או ההזדמנות'}
+    ]
+  },
+  clientInfo: {
+    id:'clientInfo', label:'פרטי לקוח', icon:'👤',
+    fields:[
+      {key:'clientName',label:'שם הלקוח',type:'text',ph:'אייל סלע'},
+      {key:'companyName',label:'שם החברה',type:'text',ph:'לוגיסטיקו בע״מ'},
+      {key:'projectType',label:'סוג הפרויקט',type:'text',ph:'שדרוג אתר + נוכחות דיגיטלית'},
+      {key:'brandDna',label:'DNA מותגי',type:'text',ph:'Professional Authority'},
+      {key:'date',label:'תאריך (ריק = אוטומטי)',type:'text',ph:''}
+    ]
+  },
+  problems: {
+    id:'problems', label:'בעיות נוכחיות', icon:'⚠️',
+    fields:[
+      {key:'sectionTitle',label:'כותרת',type:'text',ph:'האתר הנוכחי מפספס לקוחות'},
+      {key:'sectionSubtitle',label:'תת-כותרת',type:'textarea',ph:'כשלקוח מחפש — האתר הוא הרושם הראשון'},
+      {key:'problem1_icon',label:'אייקון 1',type:'text',ph:'📱'},
+      {key:'problem1_title',label:'בעיה 1',type:'text',ph:'לא מותאם למובייל'},
+      {key:'problem1_desc',label:'תיאור 1',type:'textarea',ph:''},
+      {key:'problem2_icon',label:'אייקון 2',type:'text',ph:'🎨'},
+      {key:'problem2_title',label:'בעיה 2',type:'text',ph:'עיצוב מיושן'},
+      {key:'problem2_desc',label:'תיאור 2',type:'textarea',ph:''},
+      {key:'problem3_icon',label:'אייקון 3',type:'text',ph:'🔄'},
+      {key:'problem3_title',label:'בעיה 3',type:'text',ph:'חזרתיות ובלגן'},
+      {key:'problem3_desc',label:'תיאור 3',type:'textarea',ph:''},
+      {key:'problem4_icon',label:'אייקון 4',type:'text',ph:'🏢'},
+      {key:'problem4_title',label:'בעיה 4',type:'text',ph:'לא משדר סמכות'},
+      {key:'problem4_desc',label:'תיאור 4',type:'textarea',ph:''}
+    ]
+  },
+  solutions: {
+    id:'solutions', label:'פתרונות / מה משתנה', icon:'✨',
+    fields:[
+      {key:'sectionTitle',label:'כותרת',type:'text',ph:'שדרוג שמורגש בכל פיקסל'},
+      {key:'sectionSubtitle',label:'תת-כותרת',type:'textarea',ph:''},
+      {key:'sol1_icon',label:'אייקון 1',type:'text',ph:'🎯'},
+      {key:'sol1_title',label:'פתרון 1',type:'text',ph:'מיקוד במסר אחד חזק'},
+      {key:'sol1_desc',label:'תיאור 1',type:'textarea',ph:''},
+      {key:'sol2_icon',label:'אייקון 2',type:'text',ph:'✨'},
+      {key:'sol2_title',label:'פתרון 2',type:'text',ph:'עיצוב Premium'},
+      {key:'sol2_desc',label:'תיאור 2',type:'textarea',ph:''},
+      {key:'sol3_icon',label:'אייקון 3',type:'text',ph:'📊'},
+      {key:'sol3_title',label:'פתרון 3',type:'text',ph:'מספרים שמדברים'},
+      {key:'sol3_desc',label:'תיאור 3',type:'textarea',ph:''},
+      {key:'sol4_icon',label:'אייקון 4',type:'text',ph:'📱'},
+      {key:'sol4_title',label:'פתרון 4',type:'text',ph:'Mobile-First'},
+      {key:'sol4_desc',label:'תיאור 4',type:'textarea',ph:''}
+    ]
+  },
+  stats: {
+    id:'stats', label:'סטטיסטיקות', icon:'📊',
+    fields:[
+      {key:'sectionTitle',label:'כותרת',type:'text',ph:'המספרים מדברים'},
+      {key:'stat1_number',label:'מספר 1',type:'text',ph:'75%'},
+      {key:'stat1_desc',label:'תיאור 1',type:'text',ph:'מהגולשים שופטים אמינות לפי עיצוב'},
+      {key:'stat2_number',label:'מספר 2',type:'text',ph:'3.5×'},
+      {key:'stat2_desc',label:'תיאור 2',type:'text',ph:'יותר פניות מאתר עם UX מודרני'},
+      {key:'stat3_number',label:'מספר 3',type:'text',ph:'50%'},
+      {key:'stat3_desc',label:'תיאור 3',type:'text',ph:'נוטשים אתר שלא נטען תוך 3 שניות'}
+    ]
+  },
+  pricing: {
+    id:'pricing', label:'תמחור / חבילות', icon:'💰',
+    fields:[
+      {key:'sectionTitle',label:'כותרת',type:'text',ph:'חבילות ותמחור'},
+      {key:'pkg1_name',label:'חבילה 1 — שם',type:'text',ph:'בסיסי'},
+      {key:'pkg1_price',label:'חבילה 1 — מחיר',type:'text',ph:'₪3,900'},
+      {key:'pkg1_items',label:'חבילה 1 — מה כולל (שורה לכל פריט)',type:'textarea',ph:'עיצוב דף בית\nהתאמה למובייל\nSEO בסיסי'},
+      {key:'pkg2_name',label:'חבילה 2 — שם',type:'text',ph:'מתקדם'},
+      {key:'pkg2_price',label:'חבילה 2 — מחיר',type:'text',ph:'₪7,900'},
+      {key:'pkg2_items',label:'חבילה 2 — מה כולל',type:'textarea',ph:'כל הבסיסי +\nעד 5 עמודים\nאנימציות'},
+      {key:'pkg3_name',label:'חבילה 3 — שם',type:'text',ph:'פרימיום'},
+      {key:'pkg3_price',label:'חבילה 3 — מחיר',type:'text',ph:'₪14,900'},
+      {key:'pkg3_items',label:'חבילה 3 — מה כולל',type:'textarea',ph:'כל המתקדם +\nאתר מלא\nתוכן\nליווי חודשי'}
+    ]
+  },
+  beforeAfter: {
+    id:'beforeAfter', label:'לפני ← אחרי', icon:'🔄',
+    fields:[
+      {key:'sectionTitle',label:'כותרת',type:'text',ph:'מאתר ישן → לנוכחות שמוכרת'},
+      {key:'sectionSubtitle',label:'תת-כותרת',type:'textarea',ph:'זה לא רק שינוי עיצובי — זה שינוי תפיסתי'},
+      {key:'beforeLabel',label:'לייבל לפני',type:'text',ph:'לפני — eyalsela.com'},
+      {key:'beforeImage',label:'URL תמונת לפני',type:'text',ph:'https://...'},
+      {key:'afterLabel',label:'לייבל אחרי',type:'text',ph:'אחרי — קונספט חדש'},
+      {key:'afterImage',label:'URL תמונת אחרי',type:'text',ph:'https://...'}
+    ]
+  },
+  timeline: {
+    id:'timeline', label:'שלבי עבודה / Timeline', icon:'📅',
+    fields:[
+      {key:'sectionTitle',label:'כותרת',type:'text',ph:'שלבי העבודה'},
+      {key:'sectionSubtitle',label:'תת-כותרת',type:'textarea',ph:'התהליך שלנו מההתחלה ועד ההשקה'},
+      {key:'step1_title',label:'שלב 1 — כותרת',type:'text',ph:'גילוי ואפיון'},
+      {key:'step1_desc',label:'שלב 1 — תיאור',type:'text',ph:'שיחת אפיון, הבנת צרכים, מחקר מתחרים'},
+      {key:'step2_title',label:'שלב 2 — כותרת',type:'text',ph:'עיצוב קונספט'},
+      {key:'step2_desc',label:'שלב 2 — תיאור',type:'text',ph:'עיצוב דף בית + עמוד פנימי לאישור'},
+      {key:'step3_title',label:'שלב 3 — כותרת',type:'text',ph:'פיתוח'},
+      {key:'step3_desc',label:'שלב 3 — תיאור',type:'text',ph:'בנייה טכנית, responsive, ביצועים'},
+      {key:'step4_title',label:'שלב 4 — כותרת',type:'text',ph:'תוכן וSEO'},
+      {key:'step4_desc',label:'שלב 4 — תיאור',type:'text',ph:'כתיבת תוכן, אופטימיזציה, Schema'},
+      {key:'step5_title',label:'שלב 5 — כותרת',type:'text',ph:'השקה'},
+      {key:'step5_desc',label:'שלב 5 — תיאור',type:'text',ph:'העלאה לאוויר, בדיקות, ליווי'}
+    ]
+  },
+  preview: {
+    id:'preview', label:'תצוגה מקדימה / קונספט', icon:'🖼️',
+    fields:[
+      {key:'sectionTitle',label:'כותרת',type:'text',ph:'קונספט מלא'},
+      {key:'previewImage',label:'URL תמונה',type:'text',ph:'https://...'},
+      {key:'previewNote',label:'הערה',type:'text',ph:'* זהו קונספט עיצובי. האתר הסופי ייבנה בהתאמה'}
+    ]
+  },
+  cta: {
+    id:'cta', label:'CTA — קריאה לפעולה', icon:'🚀',
+    fields:[
+      {key:'ctaTitle',label:'כותרת',type:'text',ph:'מוכן לשדרג?'},
+      {key:'ctaText',label:'טקסט',type:'textarea',ph:'בוא נדבר על איך להפוך את הנוכחות הדיגיטלית שלך...'},
+      {key:'ctaButtonText',label:'טקסט כפתור',type:'text',ph:'בוא נדבר ←'},
+      {key:'ctaButtonLink',label:'קישור כפתור',type:'text',ph:'https://wa.me/972542280300'},
+      {key:'emailText',label:'טקסט אימייל (אופציונלי)',type:'text',ph:'או שלח מייל: hagit@brandworldsstudio.com'},
+      {key:'emailLink',label:'קישור אימייל',type:'text',ph:'mailto:hagit@brandworldsstudio.com'}
+    ]
+  }
+};
+
+// ============ STATE ============
+let activeSections = ['hero','clientInfo','problems','solutions','stats','cta'];
+let expandedSection = 'hero';
+let fieldData = {};
+let generatedLink = '';
+
+// Config — the base URL where pitch.html lives
+let config = {
+  baseUrl: 'https://eyalsela.com/pitch.html',
+  brandName: 'Brand Worlds Studio',
+  brandUrl: 'https://brandos.hagitantebi.co.il'
+};
+
+// ============ RENDER ============
+function render() {
+  renderSidebar();
+  renderMain();
+}
+
+function renderSidebar() {
+  const el = document.getElementById('sidebar');
+  let h = `<div class="sidebar-title">סקשנים</div>`;
+  
+  const allKeys = Object.keys(SECTIONS);
+  allKeys.forEach(id => {
+    const s = SECTIONS[id];
+    const isActive = activeSections.includes(id);
+    h += `<div class="section-toggle ${isActive?'active':''}" onclick="toggleExpand('${id}')">
+      <input type="checkbox" ${isActive?'checked':''} onclick="event.stopPropagation();toggleSection('${id}')">
+      <span class="icon">${s.icon}</span>
+      <span class="name" style="font-weight:${isActive?'600':'400'};color:${isActive?'#e8e4df':'rgba(232,228,223,0.35)'}">${s.label}</span>
+      ${isActive ? `<span class="arrows" onclick="event.stopPropagation()">
+        <button onclick="moveSection('${id}',-1)">▲</button>
+        <button onclick="moveSection('${id}',1)">▼</button>
+      </span>` : ''}
+    </div>`;
+  });
+
+  h += `<div class="sidebar-actions">
+    <button class="btn-gold" onclick="generateLink()">🔗 צור לינק להצעה</button>
+    <button class="btn-outline" onclick="previewPitch()">👁 תצוגה מקדימה</button>
+    <button class="btn-outline" onclick="saveDraft()">💾 שמור טיוטה</button>
+    <button class="btn-outline" onclick="loadDraft()">📂 טען טיוטה</button>
+  </div>`;
+
+  el.innerHTML = h;
+}
+
+function renderMain() {
+  const el = document.getElementById('main');
+  let h = '';
+
+  // Config bar
+  h += `<div class="config-bar">
+    <div><label>כתובת דף ההצעה (pitch.html)</label>
+      <input value="${config.baseUrl}" onchange="config.baseUrl=this.value" placeholder="https://yoursite.com/pitch.html"></div>
+    <div><label>שם המותג (בהדר)</label>
+      <input value="${config.brandName}" onchange="config.brandName=this.value"></div>
+    <div><label>קישור המותג</label>
+      <input value="${config.brandUrl}" onchange="config.brandUrl=this.value"></div>
+  </div>`;
+
+  // Section accordions
+  activeSections.forEach(sId => {
+    const s = SECTIONS[sId];
+    if (!s) return;
+    const isOpen = expandedSection === sId;
+    
+    h += `<div class="accordion">
+      <div class="accordion-header ${isOpen?'open':''}" onclick="toggleExpand('${sId}')">
+        <span class="icon">${s.icon}</span>
+        <span class="title">${s.label}</span>
+        <span class="chevron">◀</span>
+      </div>`;
+    
+    if (isOpen) {
+      h += `<div class="accordion-body">`;
+      s.fields.forEach(f => {
+        const val = fieldData[sId]?.[f.key] || '';
+        if (f.type === 'textarea') {
+          h += `<div class="field-group">
+            <label>${f.label}</label>
+            <textarea placeholder="${f.ph}" oninput="updateField('${sId}','${f.key}',this.value)" rows="3">${val}</textarea>
+          </div>`;
+        } else {
+          h += `<div class="field-group">
+            <label>${f.label}</label>
+            <input type="text" placeholder="${f.ph}" value="${val}" oninput="updateField('${sId}','${f.key}',this.value)">
+          </div>`;
+        }
+      });
+      h += `</div>`;
+    }
+    h += `</div>`;
+  });
+
+  el.innerHTML = h;
+}
+
+// ============ ACTIONS ============
+function toggleSection(id) {
+  if (activeSections.includes(id)) {
+    activeSections = activeSections.filter(s => s !== id);
+  } else {
+    activeSections.push(id);
+  }
+  render();
+}
+
+function toggleExpand(id) {
+  if (!activeSections.includes(id)) {
+    activeSections.push(id);
+  }
+  expandedSection = expandedSection === id ? null : id;
+  render();
+}
+
+function moveSection(id, dir) {
+  const idx = activeSections.indexOf(id);
+  if (idx < 0) return;
+  const newIdx = idx + dir;
+  if (newIdx < 0 || newIdx >= activeSections.length) return;
+  [activeSections[idx], activeSections[newIdx]] = [activeSections[newIdx], activeSections[idx]];
+  render();
+}
+
+function updateField(section, key, value) {
+  if (!fieldData[section]) fieldData[section] = {};
+  fieldData[section][key] = value;
+}
+
+function buildPitchData() {
+  return {
+    sections: activeSections,
+    fields: fieldData,
+    config: config
+  };
+}
+
+function generateLink() {
+  const data = buildPitchData();
+  const json = JSON.stringify(data);
+  const compressed = LZString.compressToEncodedURIComponent(json);
+  generatedLink = config.baseUrl + '#d=' + compressed;
+  
+  document.getElementById('linkBox').textContent = generatedLink;
+  document.getElementById('modal').style.display = 'flex';
+}
+
+function copyLink() {
+  navigator.clipboard.writeText(generatedLink).then(() => {
+    showToast('הלינק הועתק! ✓');
+  });
+}
+
+function openLink() {
+  window.open(generatedLink, '_blank');
+}
+
+function shareWhatsApp() {
+  const clientName = fieldData.clientInfo?.clientName || 'לקוח';
+  const text = `שלום ${clientName}! הכנתי עבורך הצעה מקצועית — לחץ לצפייה:\n${generatedLink}`;
+  window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+}
+
+function closeModal() {
+  document.getElementById('modal').style.display = 'none';
+}
+
+function previewPitch() {
+  const data = buildPitchData();
+  const json = JSON.stringify(data);
+  const compressed = LZString.compressToEncodedURIComponent(json);
+  // Open pitch.html with data — try local path first
+  const previewUrl = 'pitch.html#d=' + compressed;
+  window.open(previewUrl, '_blank');
+}
+
+function saveDraft() {
+  const data = {
+    activeSections,
+    fieldData,
+    config,
+    savedAt: new Date().toISOString()
+  };
+  const json = JSON.stringify(data, null, 2);
+  const blob = new Blob([json], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const name = fieldData.clientInfo?.companyName || fieldData.clientInfo?.clientName || 'draft';
+  a.href = url;
+  a.download = `pitch-${name.replace(/\s+/g,'-')}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('הטיוטה נשמרה! 💾');
+}
+
+function loadDraft() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.json';
+  input.onchange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      try {
+        const data = JSON.parse(ev.target.result);
+        activeSections = data.activeSections || activeSections;
+        fieldData = data.fieldData || {};
+        config = data.config || config;
+        expandedSection = activeSections[0] || 'hero';
+        render();
+        showToast('הטיוטה נטענה! ✓');
+      } catch(err) {
+        showToast('שגיאה בטעינת הקובץ ✗');
+      }
+    };
+    reader.readAsText(file);
+  };
+  input.click();
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ============ INIT ============
+render();
+</script>
+</body>
+</html>
