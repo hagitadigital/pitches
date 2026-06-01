@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>הילה שרון · פסיכותרפיסטית MA — ליווי בזוגיות, גירושין, פרק ב' והדרכה הורית</title>
+<meta name="description" content="הילה שרון, פסיכותרפיסטית MA בגישת גוף-נפש-רוח. ליווי רגשי במסעות של זוגיות, גירושין, יצירת פרק ב' ומשפחה משולבת, הדרכה הורית וחיבור למהות הפנימית. קליניקה בחולון וטיפולים אונליין.">
+<meta name="author" content="הילה שרון">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="he_IL">
+<meta property="og:title" content="הילה שרון · פסיכותרפיסטית MA — ליווי רגשי בגישת גוף-נפש-רוח">
+<meta property="og:description" content="ליווי במסעות של זוגיות, גירושין, יצירת פרק ב', הדרכה הורית וחיבור למהות הפנימית. קליניקה בחולון וטיפולים אונליין.">
+<meta property="og:image" content="assets/images/og-card.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="apple-touch-icon" href="assets/images/favicon.png">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ProfessionalService",
+  "name":"הילה שרון · פסיכותרפיה וליווי רגשי",
+  "description":"פסיכותרפיסטית MA בגישת גוף-נפש-רוח. ליווי בזוגיות, גירושין, יצירת פרק ב', משפחה משולבת, הדרכה הורית וחיבור למהות הפנימית.",
+  "image":"assets/images/og-card.png",
+  "telephone":"+972-52-614-6082",
+  "email":"hilala1978@gmail.com",
+  "areaServed":"IL",
+  "availableLanguage":["he","en"],
+  "address":{"@type":"PostalAddress","addressLocality":"חולון","addressCountry":"IL"},
+  "founder":{
+    "@type":"Person",
+    "name":"הילה שרון",
+    "jobTitle":"פסיכותרפיסטית MA",
+    "knowsAbout":["זוגיות","גירושין","פרק ב'","משפחה משולבת","הדרכה הורית","פסיכותרפיה גוף-נפש","מיינדפולנס"]
+  },
+  "makesOffer":[
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"ליווי זוגי"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"ליווי בגירושין ויצירת פרק ב'"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"הדרכה הורית"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"סדנת קוד ההגשמה הזוגית"}}
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Assistant:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --cream:#F6EEE4;
+  --cream-deep:#EFE3D4;
+  --sage:#8A9A7B;
+  --sage-deep:#6E7E60;
+  --rose:#C9A19A;
+  --rose-soft:#E3C7C0;
+  --copper:#C28A5A;
+  --ink:#3D352E;
+  --ink-soft:#6B5F54;
+  --white:#FFFDFA;
+  --shadow:rgba(61,53,46,.10);
+  --display:'Frank Ruhl Libre', serif;
+  --body:'Assistant', sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--body);
+  background:var(--cream);
+  color:var(--ink);
+  line-height:1.75;
+  font-weight:300;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--rose-soft);color:var(--ink)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* grain overlay */
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- NAV ---------- */
+header{
+  position:fixed;top:0;right:0;left:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px clamp(20px,5vw,70px);
+  transition:background .5s ease, padding .5s ease, box-shadow .5s ease;
+}
+header.scrolled{
+  background:rgba(246,238,228,.85);
+  backdrop-filter:blur(14px);
+  padding:10px clamp(20px,5vw,70px);
+  box-shadow:0 1px 0 rgba(61,53,46,.06);
+}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--display);font-weight:500;font-size:1.15rem;letter-spacing:.5px}
+.brand img{width:56px;height:56px;transition:transform .6s ease}
+header.scrolled .brand img{width:48px;height:48px}
+.brand:hover img{transform:rotate(-8deg) scale(1.05)}
+nav{display:flex;align-items:center;gap:34px}
+nav a.link{font-size:.95rem;font-weight:400;color:var(--ink-soft);position:relative;transition:color .3s}
+nav a.link::after{content:"";position:absolute;bottom:-5px;right:0;width:0;height:1px;background:var(--copper);transition:width .35s ease}
+nav a.link:hover{color:var(--ink)}
+nav a.link:hover::after{width:100%}
+.nav-cta{
+  font-size:.9rem;font-weight:500;color:var(--white);
+  background:var(--sage-deep);padding:9px 22px;border-radius:40px;
+  transition:background .35s, transform .35s, box-shadow .35s;
+  box-shadow:0 6px 18px rgba(110,126,96,.25);
+}
+.nav-cta:hover{background:var(--ink);transform:translateY(-2px);box-shadow:0 10px 24px rgba(61,53,46,.22)}
+.menu-toggle{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px}
+.menu-toggle span{width:26px;height:2px;background:var(--ink);border-radius:2px;transition:.3s}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:140px clamp(20px,5vw,40px) 90px;
+  background:radial-gradient(120% 90% at 50% 0%, #FBF5EC 0%, var(--cream) 45%, var(--cream-deep) 100%);
+}
+.petal{position:absolute;border-radius:0 100% 0 100%;filter:blur(2px);opacity:.5;pointer-events:none}
+.petal.p1{width:340px;height:340px;background:radial-gradient(circle at 30% 30%,var(--rose-soft),transparent 70%);top:8%;right:-90px;animation:float 16s ease-in-out infinite}
+.petal.p2{width:420px;height:420px;background:radial-gradient(circle at 70% 70%,rgba(138,154,123,.35),transparent 70%);bottom:-6%;left:-120px;animation:float 20s ease-in-out infinite reverse}
+.petal.p3{width:240px;height:240px;background:radial-gradient(circle at 50% 50%,rgba(194,138,90,.22),transparent 70%);top:40%;left:8%;animation:float 24s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-28px) rotate(8deg)}}
+
+.lotus-wrap{position:relative;margin-bottom:34px}
+.lotus-wrap img{width:clamp(190px,26vw,270px);animation:breathe 7s ease-in-out infinite;filter:drop-shadow(0 12px 30px rgba(110,126,96,.22))}
+.lotus-wrap::before{content:"";position:absolute;inset:-30px;border-radius:50%;background:radial-gradient(circle,rgba(255,253,250,.9),transparent 65%);z-index:-1}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+
+.hero .eyebrow{font-size:.92rem;letter-spacing:5px;color:var(--copper);font-weight:500;margin-bottom:18px;text-transform:uppercase}
+.hero h1{font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,7vw,5.4rem);line-height:1.08;color:var(--ink);margin-bottom:6px}
+.hero h1 .name{display:block;font-weight:500}
+.hero .role{font-family:var(--display);font-style:italic;font-size:clamp(1.1rem,2.4vw,1.6rem);color:var(--sage-deep);margin-bottom:30px}
+.hero .lead{max-width:640px;font-size:clamp(1.05rem,1.7vw,1.3rem);color:var(--ink-soft);font-weight:300;margin-bottom:42px}
+.hero-ctas{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 34px;border-radius:44px;font-size:1.02rem;font-weight:500;transition:all .4s cubic-bezier(.2,.8,.2,1);cursor:pointer;border:none}
+.btn-primary{background:var(--copper);color:var(--white);box-shadow:0 10px 28px rgba(194,138,90,.3)}
+.btn-primary:hover{background:var(--ink);transform:translateY(-3px);box-shadow:0 16px 34px rgba(61,53,46,.25)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--rose)}
+.btn-ghost:hover{background:var(--rose-soft);border-color:var(--rose-soft);transform:translateY(-3px)}
+
+.scroll-hint{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);color:var(--ink-soft);font-size:.8rem;letter-spacing:2px;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.7}
+.scroll-hint .dot{width:6px;height:6px;border-radius:50%;background:var(--copper);animation:scrolldot 2s ease-in-out infinite}
+@keyframes scrolldot{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(10px);opacity:.3}}
+
+/* ---------- SECTION SHARED ---------- */
+section{position:relative;padding:clamp(70px,10vw,130px) clamp(20px,6vw,90px)}
+.section-eyebrow{font-size:.85rem;letter-spacing:4px;color:var(--copper);font-weight:600;text-transform:uppercase;margin-bottom:14px}
+.section-title{font-family:var(--display);font-weight:400;font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.15;color:var(--ink);margin-bottom:26px}
+.section-title em{font-style:italic;color:var(--sage-deep)}
+.wide{max-width:1180px;margin:0 auto}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(.2,.8,.2,1),transform 1s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.24s}.reveal.d3{transition-delay:.36s}.reveal.d4{transition-delay:.48s}
+
+/* ---------- ABOUT ---------- */
+.about{background:var(--cream)}
+.about-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(40px,6vw,90px);align-items:center}
+.about-photo{position:relative}
+.about-photo img{border-radius:26px;box-shadow:0 30px 60px rgba(61,53,46,.18);object-fit:cover;object-position:center top;width:100%;aspect-ratio:4/5}
+.about-photo::before{content:"";position:absolute;inset:-18px;border:1.5px solid var(--rose);border-radius:34px;z-index:-1}
+.about-photo::after{content:"";position:absolute;width:120px;height:120px;border-radius:0 100% 0 100%;background:radial-gradient(circle at 30% 30%,var(--rose-soft),transparent 72%);top:-44px;left:-30px;z-index:-2;opacity:.7}
+.about-photo .badge{position:absolute;bottom:18px;right:-16px;background:var(--white);padding:16px 24px;border-radius:16px;box-shadow:0 16px 36px rgba(61,53,46,.16);font-family:var(--display)}
+.about-photo .badge b{display:block;font-size:1.5rem;color:var(--sage-deep)}
+.about-photo .badge span{font-size:.8rem;color:var(--ink-soft);font-family:var(--body)}
+.about-text p{font-size:1.12rem;color:var(--ink-soft);margin-bottom:20px}
+.about-text p .hl{color:var(--ink);font-weight:500}
+.signature{font-family:var(--display);font-style:italic;font-size:1.6rem;color:var(--copper);margin-top:10px}
+
+/* ---------- PILLARS (body-mind-spirit) ---------- */
+.pillars{background:linear-gradient(180deg,var(--cream) 0%,var(--cream-deep) 100%);text-align:center}
+.pillar-row{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:50px}
+.pillar{padding:46px 30px;background:var(--white);border-radius:24px;box-shadow:0 18px 40px rgba(61,53,46,.07);transition:transform .5s,box-shadow .5s}
+.pillar:hover{transform:translateY(-10px);box-shadow:0 30px 56px rgba(61,53,46,.13)}
+.pillar .ic{width:64px;height:64px;margin:0 auto 22px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--cream)}
+.pillar .ic svg{width:32px;height:32px;stroke:var(--sage-deep);fill:none;stroke-width:1.4}
+.pillar h3{font-family:var(--display);font-size:1.6rem;font-weight:500;margin-bottom:12px;color:var(--ink)}
+.pillar p{color:var(--ink-soft);font-size:1.02rem}
+
+/* ---------- SERVICES ---------- */
+.services{background:var(--cream-deep)}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:54px}
+.svc{position:relative;padding:40px 34px;background:var(--white);border-radius:22px;overflow:hidden;transition:transform .5s,box-shadow .5s}
+.svc::before{content:"";position:absolute;top:0;right:0;width:100%;height:4px;background:linear-gradient(90deg,var(--copper),var(--rose));transform:scaleX(0);transform-origin:right;transition:transform .5s}
+.svc:hover{transform:translateY(-8px);box-shadow:0 26px 50px rgba(61,53,46,.12)}
+.svc:hover::before{transform:scaleX(1)}
+.svc .num{font-family:var(--display);font-size:2.4rem;color:var(--rose-soft);line-height:1;margin-bottom:14px;font-weight:500}
+.svc h3{font-family:var(--display);font-size:1.5rem;font-weight:500;margin-bottom:12px;color:var(--ink)}
+.svc p{color:var(--ink-soft);font-size:1rem}
+
+/* ---------- WORKSHOP feature ---------- */
+.workshop{background:linear-gradient(135deg,var(--sage-deep) 0%,#5c6a50 100%);color:var(--cream);overflow:hidden}
+.workshop::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(255,253,250,.10),transparent 70%);top:-160px;left:-120px}
+.workshop .wide{position:relative}
+.workshop .section-eyebrow{color:var(--rose-soft)}
+.workshop .section-title{color:var(--white);max-width:760px}
+.workshop .section-title em{color:var(--rose-soft)}
+.workshop .ws-lead{font-size:1.18rem;max-width:680px;color:rgba(246,238,228,.9);margin-bottom:30px;font-weight:300}
+.ws-points{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:38px}
+.ws-points li{list-style:none;background:rgba(255,253,250,.12);border:1px solid rgba(255,253,250,.2);padding:10px 20px;border-radius:40px;font-size:.98rem}
+.workshop .btn-primary{background:var(--cream);color:var(--ink)}
+.workshop .btn-primary:hover{background:var(--rose-soft)}
+
+/* ---------- VISION BOARD ---------- */
+.vision{background:var(--cream)}
+.vision-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(40px,6vw,80px);align-items:center}
+.vision-card{background:linear-gradient(160deg,var(--white),var(--cream));border-radius:26px;padding:48px;box-shadow:0 24px 56px rgba(61,53,46,.10);position:relative}
+.vision-card .tag{display:inline-block;background:var(--rose-soft);color:var(--ink);font-size:.82rem;font-weight:600;letter-spacing:1px;padding:6px 16px;border-radius:30px;margin-bottom:20px}
+.vision-card h3{font-family:var(--display);font-size:2rem;font-weight:500;margin-bottom:18px;line-height:1.2}
+.vision-card p{color:var(--ink-soft);margin-bottom:16px}
+.vision-list{list-style:none;margin:8px 0 26px}
+.vision-list li{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;color:var(--ink-soft)}
+.vision-list li::before{content:"✦";color:var(--copper);font-size:.9rem;margin-top:5px}
+.vision-visual{position:relative;display:flex;align-items:center;justify-content:center;min-height:340px}
+.vision-visual .frame{position:absolute;border-radius:18px;box-shadow:0 20px 44px rgba(61,53,46,.18);background:var(--white)}
+.vv1{width:55%;aspect-ratio:3/4;background:linear-gradient(160deg,var(--rose-soft),var(--rose))!important;transform:rotate(-7deg) translate(14%,-6%)}
+.vv2{width:55%;aspect-ratio:3/4;background:linear-gradient(160deg,var(--cream),var(--copper))!important;transform:rotate(5deg) translate(-18%,8%)}
+.vv3{width:50%;aspect-ratio:1;background:linear-gradient(160deg,rgba(138,154,123,.6),var(--sage-deep))!important;transform:rotate(-2deg);z-index:2}
+.vision-visual .frame span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-style:italic;color:rgba(255,255,255,.85);font-size:1.1rem}
+
+/* ---------- VIDEOS ---------- */
+.videos{background:var(--cream);text-align:center}
+.video-row{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:54px;max-width:880px;margin-inline:auto}
+.vid{position:relative;border-radius:22px;overflow:hidden;background:var(--ink);aspect-ratio:9/16;box-shadow:0 20px 46px rgba(61,53,46,.14);transition:transform .5s,box-shadow .5s}
+.vid:hover{transform:translateY(-8px);box-shadow:0 30px 56px rgba(61,53,46,.2)}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.videos .note{margin-top:34px;color:var(--ink-soft);font-size:1rem}
+
+/* ---------- BLOG ---------- */
+.blog{background:var(--cream-deep)}
+.blog-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;margin-bottom:50px}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.post{background:var(--white);border-radius:20px;overflow:hidden;transition:transform .5s,box-shadow .5s;display:flex;flex-direction:column}
+.post:hover{transform:translateY(-8px);box-shadow:0 26px 50px rgba(61,53,46,.12)}
+.post .thumb{aspect-ratio:16/10;background:linear-gradient(135deg,var(--rose-soft),var(--cream));display:flex;align-items:center;justify-content:center}
+.post .thumb svg{width:54px;height:54px;stroke:var(--copper);fill:none;stroke-width:1.2;opacity:.7}
+.post .body{padding:26px 28px 30px;flex:1;display:flex;flex-direction:column}
+.post .cat{font-size:.78rem;letter-spacing:2px;color:var(--copper);font-weight:600;margin-bottom:10px}
+.post h3{font-family:var(--display);font-size:1.35rem;font-weight:500;line-height:1.3;margin-bottom:12px}
+.post p{color:var(--ink-soft);font-size:.96rem;flex:1}
+.post .read{margin-top:18px;color:var(--sage-deep);font-weight:500;font-size:.95rem}
+
+/* ---------- CONTACT ---------- */
+.contact{background:linear-gradient(180deg,var(--cream-deep),var(--cream))}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,80px);align-items:start}
+.contact-info h2{font-family:var(--display);font-size:clamp(2rem,4vw,3rem);font-weight:400;margin-bottom:20px;line-height:1.15}
+.contact-info p{color:var(--ink-soft);font-size:1.1rem;margin-bottom:34px;max-width:440px}
+.contact-line{display:flex;align-items:center;gap:16px;margin-bottom:22px;font-size:1.08rem}
+.contact-line .ci{width:48px;height:48px;border-radius:50%;background:var(--white);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 8px 20px rgba(61,53,46,.08)}
+.contact-line .ci svg{width:22px;height:22px;stroke:var(--sage-deep);fill:none;stroke-width:1.5}
+.contact-line b{display:block;font-weight:600;color:var(--ink)}
+.contact-line span{color:var(--ink-soft);font-size:.95rem}
+form{background:var(--white);padding:40px;border-radius:24px;box-shadow:0 24px 56px rgba(61,53,46,.10)}
+form label{display:block;font-size:.9rem;font-weight:500;color:var(--ink);margin-bottom:8px}
+form input,form textarea{width:100%;padding:14px 18px;border:1.5px solid var(--cream-deep);border-radius:12px;background:var(--cream);font-family:var(--body);font-size:1rem;color:var(--ink);margin-bottom:20px;transition:border .3s,background .3s}
+form input:focus,form textarea:focus{outline:none;border-color:var(--copper);background:var(--white)}
+form textarea{resize:vertical;min-height:120px}
+form .btn-primary{width:100%;justify-content:center}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--ink);color:var(--cream);padding:60px clamp(20px,6vw,90px) 34px;text-align:center}
+footer .f-logo{width:60px;margin:0 auto 18px;filter:brightness(0) invert(1) opacity(.9)}
+footer .f-name{font-family:var(--display);font-size:1.5rem;margin-bottom:6px}
+footer .f-role{color:rgba(246,238,228,.6);font-size:.95rem;margin-bottom:26px}
+footer .f-links{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-bottom:30px}
+footer .f-links a{color:rgba(246,238,228,.8);font-size:.95rem;transition:color .3s}
+footer .f-links a:hover{color:var(--rose-soft)}
+footer .f-bottom{border-top:1px solid rgba(246,238,228,.12);padding-top:24px;color:rgba(246,238,228,.45);font-size:.82rem}
+footer .f-bottom a{color:rgba(246,238,228,.6)}
+
+/* floating whatsapp */
+.wa-float{position:fixed;bottom:24px;left:24px;z-index:200;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(37,211,102,.4);transition:transform .35s}
+.wa-float:hover{transform:scale(1.1)}
+.wa-float svg{width:30px;height:30px;fill:#fff}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:900px){
+  nav .link{display:none}
+  .menu-toggle{display:flex}
+  nav.open{position:fixed;top:0;right:0;bottom:0;width:80%;max-width:320px;background:var(--cream);flex-direction:column;justify-content:center;gap:30px;box-shadow:-10px 0 40px rgba(61,53,46,.2);padding:40px}
+  nav.open .link{display:block;font-size:1.3rem}
+  .about-grid,.vision-grid,.contact-grid{grid-template-columns:1fr}
+  .pillar-row,.svc-grid,.blog-grid{grid-template-columns:1fr}
+  .about-photo{max-width:380px;margin:0 auto}
+  .vision-visual{min-height:300px;margin-top:20px}
+}
+@media(max-width:560px){
+  .hero-ctas{flex-direction:column;width:100%}
+  .btn{justify-content:center}
+  form{padding:28px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header id="header">
+  <a href="#top" class="brand">
+    <img src="assets/images/logo.png" alt="לוגו הילה שרון">
+    הילה שרון
+  </a>
+  <nav id="nav">
+    <a href="#about" class="link">הסיפור שלי</a>
+    <a href="#services" class="link">תחומי הליווי</a>
+    <a href="#workshop" class="link">סדנה</a>
+    <a href="#vision" class="link">לוח חזון</a>
+    <a href="#videos" class="link">וידאו</a>
+    <a href="blog.html" class="link">מאמרים</a>
+    <a href="#contact" class="link">יצירת קשר</a>
+    <a href="https://wa.me/972526146082" class="nav-cta" target="_blank" rel="noopener">לתיאום פגישה</a>
+  </nav>
+  <button class="menu-toggle" id="menuToggle" aria-label="תפריט"><span></span><span></span><span></span></button>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="petal p1"></div><div class="petal p2"></div><div class="petal p3"></div>
+  <div class="lotus-wrap reveal in">
+    <img src="assets/images/logo.png" alt="פרח לוטוס — הילה שרון">
+  </div>
+  <p class="eyebrow reveal in d1">גוף · נפש · רוח</p>
+  <h1 class="reveal in d1"><span class="name">הילה שרון</span></h1>
+  <p class="role reveal in d2">פסיכותרפיסטית MA · מלווה במסעות של שינוי</p>
+  <p class="lead reveal in d3">ללוות אנשים ברגעים שבהם משהו מרגיש תקוע, להחזיק עבורם מרחב בטוח, ולראות איך צעד צעד נוצרת תנועה חדשה.</p>
+  <div class="hero-ctas reveal in d4">
+    <a href="#contact" class="btn btn-primary">לקביעת שיחת היכרות</a>
+    <a href="#about" class="btn btn-ghost">קצת עליי</a>
+  </div>
+  <div class="scroll-hint"><span>גלילה</span><span class="dot"></span></div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wide about-grid">
+    <div class="about-photo reveal">
+      <img src="assets/images/hila-portrait.jpeg" alt="הילה שרון, פסיכותרפיסטית">
+      <div class="badge"><b>20+</b><span>שנות ליווי והנחיה</span></div>
+    </div>
+    <div class="about-text reveal d1">
+      <p class="section-eyebrow">הסיפור שלי</p>
+      <h2 class="section-title">זה המקום שבו <em>הנשמה שלי</em> מרגישה בבית</h2>
+      <p>אני מאמינה שעבודה רגשית היא אחת המתנות הכי עמוקות שנוכל לתת לעצמנו. <span class="hl">היא משנה חיים מבפנים — ואז המציאות בחוץ מגיבה בהתאם.</span></p>
+      <p>מעבר לניסיון המקצועי שלי בטיפול ובליווי א.נשים, אני מביאה איתי גם ניסיון אישי עמוק מהעולם של גירושים, דייטים, פרק ב' ומשפחה משולבת. גם אני חוויתי בנייה מחדש של זוגיות, השתלבות של ילדים משני הצדדים ולידה מרגשת של ילד משותף.</p>
+      <p>חוויתי, ועדיין חווה, את כל קשת הרגשות שבאתגר וביופי של יצירת משפחה בפרק ב'. מהמקום הזה — של מקצוע וניסיון חיים — אני יושבת מולך.</p>
+      <p class="signature">הילה</p>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars" id="approach">
+  <div class="wide">
+    <p class="section-eyebrow reveal">הגישה שלי</p>
+    <h2 class="section-title reveal d1">ליווי בגישת <em>גוף · נפש · רוח</em></h2>
+    <div class="pillar-row">
+      <div class="pillar reveal d1">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></div>
+        <h3>גוף</h3>
+        <p>הקשבה לחוכמה שהגוף אוגר. עבודה מבוססת מיינדפולנס שמחזירה תחושת נוכחות, רגיעה וביטחון.</p>
+      </div>
+      <div class="pillar reveal d2">
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div>
+        <h3>נפש</h3>
+        <p>מרחב בטוח לפגוש את הרגש, להבין דפוסים חוזרים, ולשחרר את מה שתקע אותך — בלי שיפוטיות.</p>
+      </div>
+      <div class="pillar reveal d3">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3c3 4 3 8 0 11-3-3-3-7 0-11zM12 14v7M8 21h8"/></svg></div>
+        <h3>רוח</h3>
+        <p>חיבור מחדש למהות הפנימית ולמשמעות. מכאן נוצרת תנועה אמיתית — מבפנים החוצה.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="wide">
+    <p class="section-eyebrow reveal">תחומי הליווי</p>
+    <h2 class="section-title reveal d1">איפה אני יכולה <em>ללוות אותך</em></h2>
+    <div class="svc-grid">
+      <div class="svc reveal d1"><div class="num">01</div><h3>זוגיות</h3><p>חיזוק הקשר, תקשורת מקרבת, והבנה למה לפעמים גם בתוך זוגיות משהו עדיין מרגיש חסר.</p></div>
+      <div class="svc reveal d2"><div class="num">02</div><h3>גירושין</h3><p>ליווי רגיש בתהליך הפרידה — להחזיק את הכאב, לשמור על כבוד, ולצאת לדרך חדשה בשלמות.</p></div>
+      <div class="svc reveal d3"><div class="num">03</div><h3>יצירת פרק ב'</h3><p>דייטים, היכרות מחדש ובניית זוגיות שנייה — מתוך מקום בוגר, בהיר ונקי מדפוסי העבר.</p></div>
+      <div class="svc reveal d1"><div class="num">04</div><h3>משפחה משולבת</h3><p>השתלבות ילדים משני הצדדים, גבולות וזוגיות בתוך מורכבות — מניסיון אישי ומקצועי כאחד.</p></div>
+      <div class="svc reveal d2"><div class="num">05</div><h3>הדרכה הורית</h3><p>כלים לתקשורת מקרבת עם הילדים, נוכחות הורית רגועה, והורות מתוך בחירה ולא תגובה.</p></div>
+      <div class="svc reveal d3"><div class="num">06</div><h3>חיבור למהות</h3><p>מסע אישי אל הליבה הפנימית — להבין מי את, מה חשוב לך, ולאן את באמת רוצה ללכת.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORKSHOP -->
+<section class="workshop" id="workshop">
+  <div class="wide">
+    <p class="section-eyebrow reveal">סדנה</p>
+    <h2 class="section-title reveal d1">קוד ההגשמה הזוגית — <em>כשהאהבה מפסיקה להיות מקרית</em></h2>
+    <p class="ws-lead reveal d2">סדנה שנולדה מתוך מאות שיחות בקליניקה. היא לא מדברת על "למצוא זוגיות" — אלא על להבין למה היא לא מגיעה, או איך קורה שגם בתוך זוגיות משהו עדיין מרגיש חסר. עדשה חדשה לראות דרכה את עצמנו ואת מערכות היחסים שלנו.</p>
+    <ul class="ws-points reveal d2">
+      <li>זיהוי דפוסי יחסים חוזרים</li>
+      <li>מהמקרי אל הבחירה המודעת</li>
+      <li>עבודה רגשית חווייתית</li>
+      <li>כלים מעשיים לזוגיות בריאה</li>
+    </ul>
+    <a href="#contact" class="btn btn-primary reveal d3">לפרטים והרשמה לסדנה</a>
+  </div>
+</section>
+
+<!-- VISION BOARD -->
+<section class="vision" id="vision">
+  <div class="wide vision-grid">
+    <div class="vision-card reveal">
+      <span class="tag">מוצר חדש ✦ AI</span>
+      <h3>לוח חזון אישי — מסמך שנשאר איתך</h3>
+      <p>חוברת לוח חזון מעוצבת ונעימה, מלאה מקום לכתיבה, חלומות ותובנות — בשילוב <b>תמונות AI שנוצרו במיוחד עבורך</b>, שמדייקות את החזון הזוגי והאישי שלך.</p>
+      <ul class="vision-list">
+        <li>איך את רוצה להרגיש? איך נראים החיים שאת בונה?</li>
+        <li>ייצוג חזותי מדויק לזוגיות שאת מבקשת לעצמך</li>
+        <li>זה לא "עוד לוח חזון" — זה מסמך אישי שמדייק אותך</li>
+      </ul>
+      <p style="color:var(--ink);font-weight:500">כי המוח שלנו מגיב לתמונה הרבה לפני שהוא מגיב למילים.</p>
+      <a href="#contact" class="btn btn-primary" style="margin-top:14px">אני רוצה לוח חזון משלי</a>
+    </div>
+    <div class="vision-visual reveal d2">
+      <div class="frame vv1"><span>חזון</span></div>
+      <div class="frame vv2"><span>שפע</span></div>
+      <div class="frame vv3"><span>אהבה</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEOS -->
+<section class="videos" id="videos">
+  <div class="wide">
+    <p class="section-eyebrow reveal">בוידאו</p>
+    <h2 class="section-title reveal d1">רגעים קטנים, <em>תובנות גדולות</em></h2>
+    <div class="video-row">
+      <div class="vid reveal d1"><iframe src="https://www.youtube.com/embed/DngOErmlQfw" title="הילה שרון — וידאו" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="vid reveal d2"><iframe src="https://www.youtube.com/embed/CxEpIHsFwIs" title="הילה שרון — וידאו" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="vid reveal d3" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,var(--rose-soft),var(--cream))">
+        <a href="https://www.youtube.com/@" target="_blank" rel="noopener" style="text-align:center;color:var(--ink);padding:20px">
+          <svg viewBox="0 0 24 24" style="width:48px;height:48px;stroke:var(--copper);fill:none;stroke-width:1.4;margin:0 auto 14px"><path d="M5 3l14 9-14 9V3z"/></svg>
+          <span style="font-family:var(--display);font-size:1.3rem;display:block">עוד סרטונים<br>בערוץ שלי</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog" id="blog">
+  <div class="wide">
+    <div class="blog-head">
+      <div>
+        <p class="section-eyebrow reveal">מהבלוג</p>
+        <h2 class="section-title reveal d1" style="margin-bottom:0">מחשבות מן <em>הקליניקה</em></h2>
+      </div>
+      <a href="blog.html" class="btn btn-ghost reveal d2">לכל המאמרים</a>
+    </div>
+    <div class="blog-grid">
+      <a href="articles/divorce-as-beginning.html" class="post reveal d1">
+        <div class="thumb"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></div>
+        <div class="body"><p class="cat">גירושין</p><h3>גירושין הם לא הסוף — הם תחילתו של פרק ב'</h3><p>איך לעבור את הפרידה בשלמות, ולפנות מקום לחיים חדשים שמחכים בצד השני.</p><span class="read">קריאה ←</span></div>
+      </a>
+      <a href="blog.html" class="post reveal d2">
+        <div class="thumb"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></div>
+        <div class="body"><p class="cat">זוגיות</p><h3>למה אותם דפוסים חוזרים בכל מערכת יחסים?</h3><p>הדפוס שמרגיש מקרי הוא לרוב הכי לא מקרי. איך מזהים אותו — ואיך משחררים.</p><span class="read">בקרוב ←</span></div>
+      </a>
+      <a href="blog.html" class="post reveal d3">
+        <div class="thumb"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div>
+        <div class="body"><p class="cat">משפחה משולבת</p><h3>היופי והאתגר שביצירת משפחה בפרק ב'</h3><p>מהשטח האישי: על השתלבות ילדים, גבולות, וזוגיות שצומחת בתוך המורכבות.</p><span class="read">בקרוב ←</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wide contact-grid">
+    <div class="contact-info reveal">
+      <h2>בואי נתחיל <em style="font-style:italic;font-family:var(--display);color:var(--sage-deep)">תנועה חדשה</em></h2>
+      <p>שיחת היכרות ראשונה היא ללא התחייבות — הזדמנות להרגיש אם הדרך הזו מתאימה לך. אשמח לשמוע מה מביא אותך.</p>
+      <div class="contact-line">
+        <span class="ci"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+        <div><b>052-614-6082</b><span>זמינה גם בוואטסאפ</span></div>
+      </div>
+      <div class="contact-line">
+        <span class="ci"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg></span>
+        <div><b>hilala1978@gmail.com</b><span>אשיב בהקדם</span></div>
+      </div>
+      <div class="contact-line">
+        <span class="ci"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        <div><b>קליניקה בחולון</b><span>וטיפולים אונליין מכל מקום</span></div>
+      </div>
+    </div>
+    <form class="reveal d1" action="https://formspree.io/f/your-id" method="POST" onsubmit="return handleForm(event)">
+      <label for="name">שם מלא</label>
+      <input type="text" id="name" name="name" required placeholder="איך לפנות אלייך?">
+      <label for="phone">טלפון</label>
+      <input type="tel" id="phone" name="phone" required placeholder="050-0000000">
+      <label for="msg">מה מביא אותך לכאן? (לא חובה)</label>
+      <textarea id="msg" name="message" placeholder="כמה מילים על מה שעובר עלייך..."></textarea>
+      <button type="submit" class="btn btn-primary">שליחה · ואחזור אלייך</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img src="assets/images/logo.png" alt="לוגו הילה שרון" class="f-logo">
+  <div class="f-name">הילה שרון</div>
+  <div class="f-role">פסיכותרפיסטית MA · גוף · נפש · רוח</div>
+  <div class="f-links">
+    <a href="#about">הסיפור שלי</a>
+    <a href="#services">תחומי הליווי</a>
+    <a href="#workshop">סדנה</a>
+    <a href="#vision">לוח חזון</a>
+    <a href="#videos">וידאו</a>
+    <a href="blog.html">מאמרים</a>
+    <a href="#contact">יצירת קשר</a>
+  </div>
+  <div class="f-bottom">© <span id="yr"></span> הילה שרון · כל הזכויות שמורות · קליניקה בחולון וטיפולים אונליין</div>
+</footer>
+
+<a href="https://wa.me/972526146082" class="wa-float" target="_blank" rel="noopener" aria-label="וואטסאפ">
+  <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.978-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+</a>
+
+<script>
+const header=document.getElementById('header');
+window.addEventListener('scroll',()=>header.classList.toggle('scrolled',window.scrollY>40));
+document.getElementById('yr').textContent=new Date().getFullYear();
+
+// mobile menu
+const nav=document.getElementById('nav'),mt=document.getElementById('menuToggle');
+mt.addEventListener('click',()=>nav.classList.toggle('open'));
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+
+// reveal on scroll
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.15});
+document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
+
+function handleForm(e){
+  e.preventDefault();
+  const name=document.getElementById('name').value;
+  const phone=document.getElementById('phone').value;
+  const msg=document.getElementById('msg').value;
+  const text=encodeURIComponent(`היי הילה, אני ${name}. ${msg?msg+' ':''}הטלפון שלי: ${phone}`);
+  window.open(`https://wa.me/972526146082?text=${text}`,'_blank');
+  return false;
+}
+</script>
+</body>
+</html>
