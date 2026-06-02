@@ -66,7 +66,7 @@
   --body:'Assistant', sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{
   font-family:var(--body);
   background:var(--cream);
@@ -286,10 +286,16 @@ footer .f-bottom a{color:rgba(246,238,228,.6)}
 
 /* ---------- RESPONSIVE ---------- */
 @media(max-width:900px){
-  nav .link{display:none}
-  .menu-toggle{display:flex}
-  nav.open{position:fixed;top:0;right:0;bottom:0;width:80%;max-width:320px;background:var(--cream);flex-direction:column;justify-content:center;gap:30px;box-shadow:-10px 0 40px rgba(61,53,46,.2);padding:40px}
-  nav.open .link{display:block;font-size:1.3rem}
+  nav{
+    position:fixed;top:0;right:-100%;bottom:0;width:80%;max-width:320px;
+    background:var(--cream);flex-direction:column;justify-content:center;gap:26px;
+    box-shadow:-10px 0 40px rgba(61,53,46,.2);padding:40px;
+    transition:right .4s cubic-bezier(.2,.8,.2,1);
+  }
+  nav.open{right:0}
+  nav .link{font-size:1.3rem}
+  .nav-cta{font-size:1.05rem;padding:12px 30px}
+  .menu-toggle{display:flex;position:relative;z-index:101}
   .about-grid,.vision-grid,.contact-grid{grid-template-columns:1fr}
   .pillar-row,.svc-grid,.blog-grid{grid-template-columns:1fr}
   .about-photo{max-width:380px;margin:0 auto}
