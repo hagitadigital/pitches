@@ -122,9 +122,15 @@ nav a.link:hover::after{width:100%}
 .hero{
   position:relative;min-height:100vh;display:flex;flex-direction:column;
   align-items:center;justify-content:center;text-align:center;
-  padding:140px clamp(20px,5vw,40px) 90px;
+  padding:140px clamp(20px,5vw,40px) 90px;overflow:hidden;
   background:radial-gradient(120% 90% at 50% 0%, #FBF5EC 0%, var(--cream) 45%, var(--cream-deep) 100%);
 }
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero-scrim{position:absolute;inset:0;z-index:1;background:radial-gradient(120% 90% at 50% 0%, rgba(251,245,236,.46) 0%, rgba(246,238,228,.58) 48%, rgba(239,227,212,.82) 100%)}
+.hero .lotus-wrap,.hero .eyebrow,.hero h1,.hero .role,.hero .lead,.hero-ctas{position:relative;z-index:3}
+.hero .scroll-hint{z-index:3}
+.hero .petal{z-index:2}
+@media (prefers-reduced-motion:reduce){.hero-bg{display:none}}
 .petal{position:absolute;border-radius:0 100% 0 100%;filter:blur(2px);opacity:.5;pointer-events:none}
 .petal.p1{width:340px;height:340px;background:radial-gradient(circle at 30% 30%,var(--rose-soft),transparent 70%);top:8%;right:-90px;animation:float 16s ease-in-out infinite}
 .petal.p2{width:420px;height:420px;background:radial-gradient(circle at 70% 70%,rgba(138,154,123,.35),transparent 70%);bottom:-6%;left:-120px;animation:float 20s ease-in-out infinite reverse}
@@ -243,7 +249,9 @@ section{position:relative;padding:clamp(70px,10vw,130px) clamp(20px,6vw,90px)}
 .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
 .post{background:var(--white);border-radius:20px;overflow:hidden;transition:transform .5s,box-shadow .5s;display:flex;flex-direction:column}
 .post:hover{transform:translateY(-8px);box-shadow:0 26px 50px rgba(61,53,46,.12)}
-.post .thumb{aspect-ratio:16/10;background:linear-gradient(135deg,var(--rose-soft),var(--cream));display:flex;align-items:center;justify-content:center}
+.post .thumb{aspect-ratio:16/10;background:linear-gradient(135deg,var(--rose-soft),var(--cream));display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.post .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.post:hover .thumb img{transform:scale(1.05)}
 .post .thumb svg{width:54px;height:54px;stroke:var(--copper);fill:none;stroke-width:1.2;opacity:.7}
 .post .body{padding:26px 28px 30px;flex:1;display:flex;flex-direction:column}
 .post .cat{font-size:.78rem;letter-spacing:2px;color:var(--copper);font-weight:600;margin-bottom:10px}
@@ -331,6 +339,11 @@ footer .f-bottom a{color:rgba(246,238,228,.6)}
 
 <!-- HERO -->
 <section class="hero" id="top">
+  <video class="hero-bg" autoplay muted loop playsinline poster="assets/images/hero-poster.jpg" aria-hidden="true">
+    <source src="assets/video/hila-hero.webm" type="video/webm">
+    <source src="assets/video/hila-hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-scrim"></div>
   <div class="petal p1"></div><div class="petal p2"></div><div class="petal p3"></div>
   <div class="lotus-wrap reveal in">
     <img src="assets/images/logo.png" alt="פרח לוטוס — הילה שרון">
@@ -474,15 +487,15 @@ footer .f-bottom a{color:rgba(246,238,228,.6)}
     </div>
     <div class="blog-grid">
       <a href="articles/divorce-as-beginning.html" class="post reveal d1">
-        <div class="thumb"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></div>
+        <div class="thumb"><img src="assets/images/blog/divorce.jpg" alt="אישה עטופה בשמיכה מביטה אל הנוף מבעד לחלון — רגע של בדידות ופתיחה לחדש" loading="lazy"></div>
         <div class="body"><p class="cat">גירושין</p><h3>גירושין הם לא הסוף — הם תחילתו של פרק ב'</h3><p>איך לעבור את הפרידה בשלמות, ולפנות מקום לחיים חדשים שמחכים בצד השני.</p><span class="read">קריאה ←</span></div>
       </a>
       <a href="blog.html" class="post reveal d2">
-        <div class="thumb"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></div>
+        <div class="thumb"><img src="assets/images/blog/patterns.jpg" alt="זוג מחובק מן הגב בחדר אור ורך — קרבה ודפוסים במערכת יחסים" loading="lazy"></div>
         <div class="body"><p class="cat">זוגיות</p><h3>למה אותם דפוסים חוזרים בכל מערכת יחסים?</h3><p>הדפוס שמרגיש מקרי הוא לרוב הכי לא מקרי. איך מזהים אותו — ואיך משחררים.</p><span class="read">בקרוב ←</span></div>
       </a>
       <a href="blog.html" class="post reveal d3">
-        <div class="thumb"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div>
+        <div class="thumb"><img src="assets/images/blog/blended-family.jpg" alt="אם וילדה יושבות יחד באור רך — חיבור והשתלבות במשפחה בפרק ב'" loading="lazy"></div>
         <div class="body"><p class="cat">משפחה משולבת</p><h3>היופי והאתגר שביצירת משפחה בפרק ב'</h3><p>מהשטח האישי: על השתלבות ילדים, גבולות, וזוגיות שצומחת בתוך המורכבות.</p><span class="read">בקרוב ←</span></div>
       </a>
     </div>
