@@ -61,6 +61,16 @@ const suffix = crypto.randomBytes(3).toString('hex'); // 6 תווים
 const outName = `${base}-${suffix}.html`;
 const outPath = path.join(path.dirname(srcPath), outName);
 
+// ── מעקב פתיחה (beacon) ──────────────────────────────
+// כשהלקוח מזין את הקוד הנכון וההצעה נפתחת בפועל, נשלחת קריאה שקטה
+// ל-BrandOS שמפעילה התראת טלגרם ("ההצעה נפתחה"). לא נורה כשנוחתים
+// רק על מסך הקוד — רק על פענוח מוצלח. אפשר לכבות עם PROPOSAL_PING_URL=off.
+const PING_BASE = process.env.PROPOSAL_PING_URL
+  || 'https://brandos.hagitantebi.co.il/api/proposal-ping';
+const pingUrl = PING_BASE === 'off'
+  ? ''
+  : `${PING_BASE}?via=locker&p=${encodeURIComponent(base)}`;
+
 // ── מסך הנעילה (gate) ────────────────────────────────
 const gate = `<!DOCTYPE html>
 <html lang="he" dir="rtl">
@@ -133,6 +143,11 @@ f.addEventListener('submit', async (e)=>{
     const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:ITER,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['decrypt']);
     const buf=await crypto.subtle.decrypt({name:'AES-GCM',iv},key,data);
     const html=new TextDecoder().decode(buf);
+    // beacon: הצעה נפתחה בפועל (קוד נכון). נורה לפני document.write
+    // שמוחק את ה-DOM. נכשל בשקט — לעולם לא חוסם את הצפייה.
+    try{ var PING=${JSON.stringify(pingUrl)};
+      if(PING){ if(navigator.sendBeacon){navigator.sendBeacon(PING);}else{new Image().src=PING;} }
+    }catch(_){}
     document.open(); document.write(html); document.close();
   }catch(err){
     btn.disabled=false; btn.textContent='פתחי את ההצעה';

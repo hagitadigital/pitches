@@ -69,6 +69,9 @@ f.addEventListener('submit', async (e)=>{
     const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:ITER,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['decrypt']);
     const buf=await crypto.subtle.decrypt({name:'AES-GCM',iv},key,data);
     const html=new TextDecoder().decode(buf);
+    try{ var PING="https://brandos.hagitantebi.co.il/api/proposal-ping?via=locker&p=yafit";
+      if(navigator.sendBeacon){navigator.sendBeacon(PING);}else{new Image().src=PING;}
+    }catch(_){}
     document.open(); document.write(html); document.close();
   }catch(err){
     btn.disabled=false; btn.textContent='פתחי את ההצעה';
